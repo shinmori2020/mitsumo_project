@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm --version)",
+      "Bash(npx create-react-app:*)",
+      "Read(//c/Users/kiyos_000/Desktop/**)",
+      "Bash(npx create-vite:*)",
+      "Bash(cp mitsumo_temp/index.html mitsumo_project/)",
+      "Bash(cp mitsumo_temp/vite.config.js mitsumo_project/)",
+      "Bash(cp mitsumo_temp/eslint.config.js mitsumo_project/)",
+      "Bash(cp mitsumo_temp/package.json mitsumo_project/)",
+      "Bash(cp -r mitsumo_temp/public mitsumo_project/)",
+      "Bash(npm install:*)",
+      "Bash(npx vite:*)",
+      "Bash(git --version)",
+      "Bash(gh --version)"
+    ]
+  }
+}
