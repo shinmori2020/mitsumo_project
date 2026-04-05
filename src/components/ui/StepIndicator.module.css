@@ -6,11 +6,53 @@
   z-index: 100;
 }
 
+.topRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
 .title {
   font-size: 16px;
   color: #E1F5EE;
   font-weight: 500;
-  margin-bottom: 12px;
+}
+
+.sidebarToggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.toggleLabel {
+  font-size: 11px;
+  color: #9FE1CB;
+}
+
+.toggleButton {
+  display: flex;
+  background-color: #0F6E56;
+  border: none;
+  border-radius: 12px;
+  padding: 2px;
+  cursor: pointer;
+  gap: 0;
+}
+
+.toggleOption {
+  font-size: 11px;
+  padding: 4px 10px;
+  border-radius: 10px;
+  color: #9FE1CB;
+  transition: background-color 0.2s, color 0.2s;
+  font-family: inherit;
+}
+
+.toggleActive {
+  background-color: #FFFFFF;
+  color: #085041;
+  font-weight: 500;
 }
 
 .steps {

@@ -1,0 +1,131 @@
+.sidebar {
+  width: 300px;
+  min-width: 300px;
+  background-color: #F8FBF9;
+  border-right: 0.5px solid #ddd;
+  height: calc(100vh - 100px);
+  position: sticky;
+  top: 100px;
+  overflow-y: auto;
+  transition: order 0.3s;
+}
+
+.sidebarRight {
+  border-right: none;
+  border-left: 0.5px solid #ddd;
+}
+
+.priceCard {
+  background-color: #085041;
+  border-radius: 16px;
+  padding: 20px 16px;
+  margin: 16px;
+  text-align: center;
+}
+
+.priceLabel {
+  font-size: 12px;
+  color: #9FE1CB;
+}
+
+.priceAmount {
+  font-size: 28px;
+  font-weight: 500;
+  color: #FFFFFF;
+  margin: 4px 0;
+}
+
+.priceYen {
+  font-size: 14px;
+  color: #9FE1CB;
+}
+
+.priceDivider {
+  border: none;
+  border-top: 0.5px solid #0F6E56;
+  margin: 12px 0;
+}
+
+.priceSubRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2px 0;
+}
+
+.priceSubLabel {
+  font-size: 12px;
+  color: #9FE1CB;
+}
+
+.priceSubAmount {
+  font-size: 15px;
+  font-weight: 500;
+  color: #5DCAA5;
+}
+
+.section {
+  padding: 0 16px;
+  margin-bottom: 12px;
+}
+
+.sectionHeader {
+  font-size: 12px;
+  font-weight: 500;
+  color: #FFFFFF;
+  background-color: #1D9E75;
+  padding: 6px 12px;
+  border-radius: 8px;
+  margin-bottom: 8px;
+}
+
+.itemList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 12px;
+  font-size: 13px;
+  color: #085041;
+  border-bottom: 0.5px solid #E1F5EE;
+}
+
+.item:last-child {
+  border-bottom: none;
+}
+
+.itemLabel {
+  flex: 1;
+}
+
+.itemValue {
+  font-weight: 500;
+  color: #1D9E75;
+  font-size: 12px;
+}
+
+.itemOff {
+  color: #aaa;
+}
+
+.badge {
+  display: inline-block;
+  background-color: #E1F5EE;
+  color: #085041;
+  font-size: 11px;
+  font-weight: 500;
+  padding: 2px 8px;
+  border-radius: 10px;
+}
+
+.emptyNote {
+  font-size: 12px;
+  color: #9FE1CB;
+  padding: 6px 12px;
+  font-style: italic;
+}

@@ -2,3 +2,12 @@
   min-height: 100vh;
   background-color: #FFFFFF;
 }
+
+.layout {
+  display: flex;
+}
+
+.main-content {
+  flex: 1;
+  min-width: 0;
+}
