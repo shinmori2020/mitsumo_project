@@ -6,13 +6,13 @@ const initialEstimate = {
   // Step1：サイトの基本情報
   siteType: 'corporate',
   buildMethod: 'wordpress',
-  topPage: true,
-  subPageCount: 5,
+  topPage: false,
+  subPageCount: 0,
   lpPageCount: 0,
-  tplBlog: true,
-  tplArchive: true,
+  tplBlog: false,
+  tplArchive: false,
   page404: false,
-  responsive: true,
+  responsive: false,
   dataMigration: false,
 
   // Step2：機能選択
