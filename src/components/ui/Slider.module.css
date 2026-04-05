@@ -15,7 +15,7 @@
 }
 
 .label {
-  font-size: 15px;
+  font-size: 17px;
   color: #085041;
 }
 
@@ -33,13 +33,13 @@
 }
 
 .badgeNumber {
-  font-size: 22px;
+  font-size: 24px;
   font-weight: 500;
   color: #085041;
 }
 
 .badgeUnit {
-  font-size: 13px;
+  font-size: 15px;
   color: #0F6E56;
   margin-left: 4px;
 }

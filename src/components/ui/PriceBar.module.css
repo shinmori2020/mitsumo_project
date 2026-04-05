@@ -15,7 +15,7 @@
 }
 
 .barLabel {
-  font-size: 12px;
+  font-size: 14px;
   color: #9FE1CB;
 }
 
@@ -26,18 +26,18 @@
 }
 
 .taxLabel {
-  font-size: 12px;
+  font-size: 14px;
   color: #5DCAA5;
 }
 
 .price {
-  font-size: 24px;
+  font-size: 26px;
   font-weight: 500;
   color: #FFFFFF;
 }
 
 .yen {
-  font-size: 14px;
+  font-size: 16px;
   color: #9FE1CB;
 }
 
@@ -48,12 +48,12 @@
 }
 
 .taxIncLabel {
-  font-size: 12px;
+  font-size: 14px;
   color: #9FE1CB;
 }
 
 .taxIncPrice {
-  font-size: 17px;
+  font-size: 19px;
   font-weight: 500;
   color: #5DCAA5;
 }

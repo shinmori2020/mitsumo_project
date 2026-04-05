@@ -23,19 +23,19 @@
 }
 
 .priceLabel {
-  font-size: 12px;
+  font-size: 14px;
   color: #9FE1CB;
 }
 
 .priceAmount {
-  font-size: 28px;
+  font-size: 32px;
   font-weight: 500;
   color: #FFFFFF;
   margin: 4px 0;
 }
 
 .priceYen {
-  font-size: 14px;
+  font-size: 16px;
   color: #9FE1CB;
 }
 
@@ -47,7 +47,7 @@
 }
 
 .priceTaxInc {
-  font-size: 12px;
+  font-size: 14px;
   color: #9FE1CB;
   margin-left: 4px;
 }
@@ -66,12 +66,12 @@
 }
 
 .priceSubLabel {
-  font-size: 12px;
+  font-size: 14px;
   color: #9FE1CB;
 }
 
 .priceSubAmount {
-  font-size: 15px;
+  font-size: 17px;
   font-weight: 500;
   color: #5DCAA5;
 }
@@ -82,7 +82,7 @@
 }
 
 .sectionHeader {
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 500;
   color: #FFFFFF;
   background-color: #1D9E75;
@@ -102,7 +102,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 8px 14px;
-  font-size: 13px;
+  font-size: 15px;
   color: #085041;
   border-bottom: 0.5px solid #E1F5EE;
 }
@@ -118,7 +118,7 @@
 .itemValue {
   font-weight: 500;
   color: #1D9E75;
-  font-size: 12px;
+  font-size: 14px;
 }
 
 .itemOff {
@@ -129,14 +129,14 @@
   display: inline-block;
   background-color: #E1F5EE;
   color: #085041;
-  font-size: 11px;
+  font-size: 13px;
   font-weight: 500;
-  padding: 2px 8px;
+  padding: 4px 10px;
   border-radius: 8px;
 }
 
 .emptyNote {
-  font-size: 12px;
+  font-size: 14px;
   color: #9FE1CB;
   padding: 6px 12px;
   font-style: italic;
