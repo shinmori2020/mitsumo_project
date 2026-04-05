@@ -1,5 +1,5 @@
 .container {
-  padding: 24px;
+  padding: 32px;
   padding-bottom: 100px;
 }
 
@@ -12,7 +12,7 @@
 .sectionDesc {
   font-size: 14px;
   color: #0F6E56;
-  margin-bottom: 28px;
+  margin-bottom: 32px;
 }
 
 .fieldLabel {
@@ -24,24 +24,24 @@
 
 .pillGroup {
   display: flex;
-  gap: 8px;
+  gap: 12px;
   flex-wrap: wrap;
   margin-bottom: 20px;
 }
 
 .buttons {
   display: flex;
-  gap: 12px;
-  padding: 16px 0;
+  gap: 16px;
+  padding: 24px 0;
 }
 
 .backButton {
   flex: 1;
-  border-radius: 16px;
+  border-radius: 8px;
   border: 0.5px solid #ddd;
   background: #FFFFFF;
   color: #0F6E56;
-  padding: 14px;
+  padding: 16px;
   font-size: 15px;
   font-family: inherit;
   cursor: not-allowed;
@@ -50,12 +50,12 @@
 
 .nextButton {
   flex: 2;
-  border-radius: 16px;
+  border-radius: 8px;
   border: none;
   background: #1D9E75;
   color: #FFFFFF;
   font-weight: 500;
-  padding: 14px;
+  padding: 16px;
   font-size: 15px;
   font-family: inherit;
   cursor: pointer;

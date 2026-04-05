@@ -16,9 +16,9 @@
 
 .priceCard {
   background-color: #085041;
-  border-radius: 16px;
-  padding: 20px 16px;
-  margin: 16px;
+  border-radius: 8px;
+  padding: 30px 24px;
+  margin: 20px;
   text-align: left;
 }
 
@@ -55,14 +55,14 @@
 .priceDivider {
   border: none;
   border-top: 0.5px solid #0F6E56;
-  margin: 12px 0;
+  margin: 16px 0;
 }
 
 .priceSubRow {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 2px 0;
+  padding: 4px 0;
 }
 
 .priceSubLabel {
@@ -77,8 +77,8 @@
 }
 
 .section {
-  padding: 0 16px;
-  margin-bottom: 12px;
+  padding: 0 20px;
+  margin-bottom: 20px;
 }
 
 .sectionHeader {
@@ -86,9 +86,9 @@
   font-weight: 500;
   color: #FFFFFF;
   background-color: #1D9E75;
-  padding: 6px 12px;
+  padding: 8px 14px;
   border-radius: 8px;
-  margin-bottom: 8px;
+  margin-bottom: 12px;
 }
 
 .itemList {
@@ -101,7 +101,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 6px 12px;
+  padding: 8px 14px;
   font-size: 13px;
   color: #085041;
   border-bottom: 0.5px solid #E1F5EE;
@@ -132,7 +132,7 @@
   font-size: 11px;
   font-weight: 500;
   padding: 2px 8px;
-  border-radius: 10px;
+  border-radius: 8px;
 }
 
 .emptyNote {

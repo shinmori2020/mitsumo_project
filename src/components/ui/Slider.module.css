@@ -1,8 +1,8 @@
 .row {
   display: flex;
   align-items: center;
-  padding: 14px 16px;
-  gap: 16px;
+  padding: 18px 20px;
+  gap: 20px;
   border-bottom: 0.5px solid #ddd;
 }
 
@@ -25,8 +25,8 @@
 
 .badge {
   background-color: #E1F5EE;
-  border-radius: 14px;
-  padding: 8px 18px;
+  border-radius: 8px;
+  padding: 10px 20px;
   text-align: center;
   flex-shrink: 0;
   min-width: 80px;
