@@ -1,0 +1,45 @@
+.row {
+  display: flex;
+  align-items: center;
+  padding: 14px 16px;
+  gap: 16px;
+  border-bottom: 0.5px solid #ddd;
+}
+
+.row:last-child {
+  border-bottom: none;
+}
+
+.labelWrap {
+  min-width: 120px;
+}
+
+.label {
+  font-size: 15px;
+  color: #085041;
+}
+
+.slider {
+  flex: 1;
+}
+
+.badge {
+  background-color: #E1F5EE;
+  border-radius: 14px;
+  padding: 8px 18px;
+  text-align: center;
+  flex-shrink: 0;
+  min-width: 80px;
+}
+
+.badgeNumber {
+  font-size: 22px;
+  font-weight: 500;
+  color: #085041;
+}
+
+.badgeUnit {
+  font-size: 13px;
+  color: #0F6E56;
+  margin-left: 4px;
+}

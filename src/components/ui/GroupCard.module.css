@@ -1,0 +1,16 @@
+.groupLabel {
+  background-color: #1D9E75;
+  color: #FFFFFF;
+  font-size: 13px;
+  font-weight: 500;
+  padding: 8px 16px;
+  border-radius: 12px 12px 0 0;
+}
+
+.groupBox {
+  border: 0.5px solid #ddd;
+  border-top: none;
+  border-radius: 0 0 12px 12px;
+  padding: 4px 0;
+  margin-bottom: 8px;
+}

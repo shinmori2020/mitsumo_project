@@ -1,0 +1,80 @@
+.header {
+  background-color: #1D9E75;
+  padding: 16px 24px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.title {
+  font-size: 16px;
+  color: #E1F5EE;
+  font-weight: 500;
+  margin-bottom: 12px;
+}
+
+.steps {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.stepItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.circle {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.circleCurrent {
+  background-color: #FFFFFF;
+  color: #1D9E75;
+}
+
+.circleCompleted {
+  background-color: #E1F5EE;
+  color: #1D9E75;
+}
+
+.circlePending {
+  background-color: #5DCAA5;
+  color: #FFFFFF;
+}
+
+.stepLabel {
+  font-size: 12px;
+  margin-top: 4px;
+}
+
+.labelActive {
+  color: #E1F5EE;
+}
+
+.labelPending {
+  color: #9FE1CB;
+}
+
+.line {
+  width: 40px;
+  height: 2px;
+  margin: 0 4px;
+  margin-bottom: 20px;
+}
+
+.lineCompleted {
+  background-color: #E1F5EE;
+}
+
+.linePending {
+  background-color: #5DCAA5;
+}

@@ -1,0 +1,20 @@
+.pill {
+  border-radius: 24px;
+  padding: 10px 20px;
+  font-size: 14px;
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.active {
+  background-color: #1D9E75;
+  color: #FFFFFF;
+  font-weight: 500;
+}
+
+.inactive {
+  background-color: #E1F5EE;
+  color: #085041;
+}

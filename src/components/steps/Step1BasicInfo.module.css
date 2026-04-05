@@ -1,0 +1,62 @@
+.container {
+  padding: 24px;
+  padding-bottom: 100px;
+}
+
+.sectionTitle {
+  font-size: 20px;
+  font-weight: 500;
+  color: #085041;
+}
+
+.sectionDesc {
+  font-size: 14px;
+  color: #0F6E56;
+  margin-bottom: 28px;
+}
+
+.fieldLabel {
+  font-size: 13px;
+  font-weight: 500;
+  color: #0F6E56;
+  margin-bottom: 10px;
+}
+
+.pillGroup {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.buttons {
+  display: flex;
+  gap: 12px;
+  padding: 16px 0;
+}
+
+.backButton {
+  flex: 1;
+  border-radius: 16px;
+  border: 0.5px solid #ddd;
+  background: #FFFFFF;
+  color: #0F6E56;
+  padding: 14px;
+  font-size: 15px;
+  font-family: inherit;
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.nextButton {
+  flex: 2;
+  border-radius: 16px;
+  border: none;
+  background: #1D9E75;
+  color: #FFFFFF;
+  font-weight: 500;
+  padding: 14px;
+  font-size: 15px;
+  font-family: inherit;
+  cursor: pointer;
+}
