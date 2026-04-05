@@ -3,11 +3,10 @@
   min-width: 300px;
   background-color: #F8FBF9;
   border-right: 0.5px solid #ddd;
-  height: calc(100vh - 100px);
+  height: 100vh;
   position: sticky;
-  top: 100px;
+  top: 0;
   overflow-y: auto;
-  transition: order 0.3s;
 }
 
 .sidebarRight {

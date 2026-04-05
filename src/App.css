@@ -5,9 +5,17 @@
 
 .layout {
   display: flex;
+  min-height: 100vh;
+}
+
+.main-column {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  position: relative;
 }
 
 .main-content {
   flex: 1;
-  min-width: 0;
 }

@@ -29,34 +29,36 @@ function App() {
 
   return (
     <div className="app">
-      <StepIndicator
-        currentStep={currentStep}
-        sidebarPosition={sidebarPosition}
-        onToggleSidebar={toggleSidebar}
-      />
-
       <div className={`layout ${sidebarPosition === 'right' ? 'layout-right' : ''}`}>
         {sidebarPosition === 'left' && sidebarElement}
 
-        <main className="main-content">
-          {currentStep === 1 && (
-            <Step1BasicInfo
-              estimate={estimate}
-              updateField={updateField}
-              onNext={handleNext}
-            />
-          )}
-          {currentStep >= 2 && (
-            <div style={{ padding: '24px', paddingBottom: '100px', textAlign: 'center', color: '#0F6E56' }}>
-              <p>Step {currentStep} は今後実装予定です</p>
-            </div>
-          )}
-        </main>
+        <div className="main-column">
+          <StepIndicator
+            currentStep={currentStep}
+            sidebarPosition={sidebarPosition}
+            onToggleSidebar={toggleSidebar}
+          />
+
+          <main className="main-content">
+            {currentStep === 1 && (
+              <Step1BasicInfo
+                estimate={estimate}
+                updateField={updateField}
+                onNext={handleNext}
+              />
+            )}
+            {currentStep >= 2 && (
+              <div style={{ padding: '24px', paddingBottom: '100px', textAlign: 'center', color: '#0F6E56' }}>
+                <p>Step {currentStep} は今後実装予定です</p>
+              </div>
+            )}
+          </main>
+
+          <PriceBar price={price} />
+        </div>
 
         {sidebarPosition === 'right' && sidebarElement}
       </div>
-
-      <PriceBar price={price} />
     </div>
   );
 }

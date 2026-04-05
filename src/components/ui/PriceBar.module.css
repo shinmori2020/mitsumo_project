@@ -1,10 +1,8 @@
 .bar {
   background-color: #085041;
   padding: 12px 24px;
-  position: fixed;
+  position: sticky;
   bottom: 0;
-  left: 0;
-  right: 0;
   z-index: 100;
   display: flex;
   align-items: center;
