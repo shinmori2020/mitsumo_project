@@ -39,11 +39,11 @@ export default function Sidebar({ estimate, price, position }) {
       {/* 金額カード */}
       <div className={styles.priceCard}>
         <div className={styles.priceLabel}>お見積もり金額</div>
-        <div>
+        <div className={styles.priceMainRow}>
           <span className={styles.priceAmount}>{formatCurrency(price.total)}</span>
           <span className={styles.priceYen}>円</span>
+          <span className={styles.priceTaxInc}>(税込)</span>
         </div>
-        <div className={styles.priceLabel}>(税込)</div>
         <hr className={styles.priceDivider} />
         <div className={styles.priceSubRow}>
           <span className={styles.priceSubLabel}>税抜</span>
