@@ -5,7 +5,7 @@ import { calculatePrice } from '../utils/calculatePrice';
 const initialEstimate = {
   // Step1：サイトの基本情報
   siteType: 'corporate',
-  buildMethod: 'wordpress',
+  buildMethod: 'html',
   topPage: false,
   subPageCount: 0,
   lpPageCount: 0,
