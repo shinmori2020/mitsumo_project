@@ -19,7 +19,7 @@
   border-radius: 16px;
   padding: 20px 16px;
   margin: 16px;
-  text-align: center;
+  text-align: left;
 }
 
 .priceLabel {
@@ -42,7 +42,7 @@
 .priceMainRow {
   display: flex;
   align-items: baseline;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 4px;
 }
 
