@@ -15,3 +15,27 @@ body {
   line-height: 1.6;
   color: #333;
 }
+
+/* スクロールバーをグリーンテーマに */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #E1F5EE;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #9FE1CB;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #5DCAA5;
+}
+
+/* Firefox用 */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #9FE1CB #E1F5EE;
+}
