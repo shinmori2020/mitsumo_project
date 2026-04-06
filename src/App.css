@@ -7,49 +7,11 @@
 .layout {
   display: flex;
   min-height: 100vh;
-  transition: flex-direction 0.4s ease;
-}
-
-.layout-left {
-  flex-direction: row;
-}
-
-.layout-right {
-  flex-direction: row-reverse;
 }
 
 .sidebar-wrapper {
-  animation: sidebarIn 0.4s ease both;
-}
-
-.layout-left .sidebar-wrapper {
-  animation: slideInLeft 0.4s ease both;
-}
-
-.layout-right .sidebar-wrapper {
-  animation: slideInRight 0.4s ease both;
-}
-
-@keyframes slideInLeft {
-  from {
-    opacity: 0;
-    transform: translateX(-40px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes slideInRight {
-  from {
-    opacity: 0;
-    transform: translateX(40px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
+  flex-shrink: 0;
+  transition: transform 0.5s ease;
 }
 
 .main-column {
@@ -58,6 +20,25 @@
   display: flex;
   flex-direction: column;
   position: relative;
+  transition: transform 0.5s ease;
+}
+
+/* 左配置（デフォルト）*/
+.layout-left .sidebar-wrapper {
+  transform: translateX(0);
+}
+
+.layout-left .main-column {
+  transform: translateX(0);
+}
+
+/* 右配置：サイドバーが右へスライド、メインが左へスライド */
+.layout-right .sidebar-wrapper {
+  transform: translateX(calc(100vw - 500px));
+}
+
+.layout-right .main-column {
+  transform: translateX(-500px);
 }
 
 .main-content {

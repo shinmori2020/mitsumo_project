@@ -26,7 +26,7 @@ function App() {
   return (
     <div className="app">
       <div className={`layout ${sidebarPosition === 'right' ? 'layout-right' : 'layout-left'}`}>
-        <div className="sidebar-wrapper" key={sidebarPosition}>
+        <div className="sidebar-wrapper">
           <Sidebar estimate={estimate} price={price} position={sidebarPosition} />
         </div>
 
