@@ -7,10 +7,13 @@
 .layout {
   display: flex;
   min-height: 100vh;
+  position: relative;
 }
 
 .sidebar-wrapper {
   flex-shrink: 0;
+  position: relative;
+  z-index: 50;
   transition: transform 0.5s ease;
 }
 
@@ -20,7 +23,6 @@
   display: flex;
   flex-direction: column;
   position: relative;
-  transition: transform 0.5s ease;
 }
 
 /* 左配置（デフォルト）*/
@@ -28,17 +30,9 @@
   transform: translateX(0);
 }
 
-.layout-left .main-column {
-  transform: translateX(0);
-}
-
-/* 右配置：サイドバーが右へスライド、メインが左へスライド */
+/* 右配置：サイドバーがメインの上を通って右へスライド */
 .layout-right .sidebar-wrapper {
   transform: translateX(calc(100vw - 500px));
-}
-
-.layout-right .main-column {
-  transform: translateX(-500px);
 }
 
 .main-content {
