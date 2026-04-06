@@ -13,8 +13,8 @@ const SITE_TYPES = [
 ];
 
 const BUILD_METHODS = [
-  { value: 'wordpress', label: 'WordPress' },
   { value: 'html', label: 'HTML・CSS' },
+  { value: 'wordpress', label: 'WordPress' },
 ];
 
 export default function Step1BasicInfo({ estimate, updateField, onNext }) {
