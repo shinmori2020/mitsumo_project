@@ -5,6 +5,7 @@
   border-right: 0.5px solid #ddd;
   height: 100%;
   min-height: 100vh;
+  padding-top: 20px;
 }
 
 .sidebarRight {
@@ -16,7 +17,7 @@
   background-color: #085041;
   border-radius: 8px;
   padding: 30px 24px;
-  margin: 20px;
+  margin: 0 20px 20px 20px;
   text-align: left;
   position: sticky;
   top: 0;
