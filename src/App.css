@@ -1,11 +1,55 @@
 .app {
   min-height: 100vh;
   background-color: #FFFFFF;
+  overflow-x: hidden;
 }
 
 .layout {
   display: flex;
   min-height: 100vh;
+  transition: flex-direction 0.4s ease;
+}
+
+.layout-left {
+  flex-direction: row;
+}
+
+.layout-right {
+  flex-direction: row-reverse;
+}
+
+.sidebar-wrapper {
+  animation: sidebarIn 0.4s ease both;
+}
+
+.layout-left .sidebar-wrapper {
+  animation: slideInLeft 0.4s ease both;
+}
+
+.layout-right .sidebar-wrapper {
+  animation: slideInRight 0.4s ease both;
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 .main-column {

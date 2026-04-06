@@ -23,14 +23,12 @@ function App() {
     setSidebarPosition(prev => prev === 'left' ? 'right' : 'left');
   };
 
-  const sidebarElement = (
-    <Sidebar estimate={estimate} price={price} position={sidebarPosition} />
-  );
-
   return (
     <div className="app">
-      <div className={`layout ${sidebarPosition === 'right' ? 'layout-right' : ''}`}>
-        {sidebarPosition === 'left' && sidebarElement}
+      <div className={`layout ${sidebarPosition === 'right' ? 'layout-right' : 'layout-left'}`}>
+        <div className="sidebar-wrapper" key={sidebarPosition}>
+          <Sidebar estimate={estimate} price={price} position={sidebarPosition} />
+        </div>
 
         <div className="main-column">
           <StepIndicator
@@ -56,8 +54,6 @@ function App() {
 
           <PriceBar price={price} />
         </div>
-
-        {sidebarPosition === 'right' && sidebarElement}
       </div>
     </div>
   );
