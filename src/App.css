@@ -48,3 +48,21 @@
 .main-content {
   flex: 1;
 }
+
+/* タブレット以下：サイドバー非表示、1カラム */
+@media (max-width: 1024px) {
+  .sidebar-wrapper {
+    display: none;
+  }
+
+  .layout-right .main-column {
+    transform: translateX(0);
+  }
+}
+
+/* スマホ */
+@media (max-width: 768px) {
+  .main-column {
+    min-width: 100vw;
+  }
+}

@@ -63,3 +63,17 @@
 .knobOff {
   left: 4px;
 }
+
+@media (max-width: 768px) {
+  .row {
+    padding: 14px 16px;
+  }
+
+  .label {
+    font-size: 15px;
+  }
+
+  .description {
+    font-size: 12px;
+  }
+}

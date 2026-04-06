@@ -60,3 +60,42 @@
   font-family: inherit;
   cursor: pointer;
 }
+
+/* スマホ */
+@media (max-width: 768px) {
+  .container {
+    padding: 20px 16px;
+    padding-bottom: 80px;
+  }
+
+  .sectionTitle {
+    font-size: 19px;
+  }
+
+  .sectionDesc {
+    font-size: 14px;
+    margin-bottom: 24px;
+  }
+
+  .pillGroup {
+    gap: 8px;
+  }
+
+  .buttons {
+    gap: 12px;
+    padding: 20px 0;
+  }
+
+  .backButton,
+  .nextButton {
+    padding: 14px;
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 16px 12px;
+    padding-bottom: 80px;
+  }
+}

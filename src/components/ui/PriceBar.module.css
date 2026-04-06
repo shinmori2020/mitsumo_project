@@ -57,3 +57,30 @@
   font-weight: 500;
   color: #5DCAA5;
 }
+
+@media (max-width: 768px) {
+  .bar {
+    padding: 10px 16px;
+  }
+
+  .price {
+    font-size: 22px;
+  }
+
+  .taxIncPrice {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .bar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    padding: 10px 16px;
+  }
+
+  .right {
+    align-items: flex-start;
+  }
+}

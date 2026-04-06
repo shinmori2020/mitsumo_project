@@ -43,3 +43,40 @@
   color: #0F6E56;
   margin-left: 4px;
 }
+
+@media (max-width: 768px) {
+  .row {
+    padding: 14px 16px;
+    gap: 12px;
+  }
+
+  .labelWrap {
+    min-width: 90px;
+  }
+
+  .label {
+    font-size: 15px;
+  }
+
+  .badgeNumber {
+    font-size: 20px;
+  }
+
+  .badge {
+    padding: 8px 14px;
+    min-width: 70px;
+  }
+}
+
+@media (max-width: 480px) {
+  .row {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .slider {
+    order: 3;
+    width: 100%;
+    flex: none;
+  }
+}
