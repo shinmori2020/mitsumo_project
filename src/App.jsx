@@ -10,6 +10,7 @@ import './App.css';
 function App() {
   const { estimate, updateField, currentStep, setCurrentStep, price, resetEstimate } = useEstimate();
   const [sidebarPosition, setSidebarPosition] = useState('left');
+  const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
 
   const handleNext = () => {
     if (currentStep < 5) setCurrentStep(currentStep + 1);
@@ -35,6 +36,7 @@ function App() {
             currentStep={currentStep}
             sidebarPosition={sidebarPosition}
             onToggleSidebar={toggleSidebar}
+            onToggleMobileSidebar={() => setMobileSidebarOpen(true)}
           />
 
           <main className="main-content">
@@ -53,6 +55,21 @@ function App() {
           </main>
 
           <PriceBar price={price} />
+        </div>
+      </div>
+
+      {/* モバイル用オーバーレイサイドバー */}
+      <div className={`mobile-overlay ${mobileSidebarOpen ? 'open' : ''}`}>
+        <div className="mobile-backdrop" onClick={() => setMobileSidebarOpen(false)} />
+        <div className="mobile-sidebar">
+          <button
+            className="mobile-close"
+            onClick={() => setMobileSidebarOpen(false)}
+            aria-label="閉じる"
+          >
+            ✕
+          </button>
+          <Sidebar estimate={estimate} price={price} position="left" />
         </div>
       </div>
     </div>

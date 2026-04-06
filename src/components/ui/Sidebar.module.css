@@ -143,3 +143,17 @@
   padding: 6px 12px;
   font-style: italic;
 }
+
+/* モバイルオーバーレイ内のサイドバー */
+@media (max-width: 1024px) {
+  .sidebar {
+    width: 100%;
+    min-width: 0;
+    border-right: none;
+    padding-top: 50px;
+  }
+
+  .priceCard {
+    position: static;
+  }
+}
