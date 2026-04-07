@@ -73,8 +73,8 @@
   .mobile-hamburger {
     display: flex;
     position: fixed;
-    top: 16px;
-    right: 16px;
+    top: 20px;
+    right: 24px;
     z-index: 300;
     width: 28px;
     height: 24px;
