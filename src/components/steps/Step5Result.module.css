@@ -1,0 +1,282 @@
+.container {
+  padding: 32px;
+  padding-bottom: 40px;
+}
+
+.sectionTitle {
+  font-size: 22px;
+  font-weight: 500;
+  color: #085041;
+  margin-bottom: 24px;
+}
+
+/* 合計金額カード */
+.priceCard {
+  background-color: #085041;
+  border-radius: 20px;
+  padding: 28px 24px;
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.priceLabel {
+  font-size: 14px;
+  color: #9FE1CB;
+}
+
+.clientName {
+  font-size: 16px;
+  color: #5DCAA5;
+  font-weight: 500;
+  margin-top: 4px;
+}
+
+.totalRow {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 4px;
+  margin: 8px 0;
+}
+
+.totalAmount {
+  font-size: 40px;
+  font-weight: 500;
+  color: #FFFFFF;
+}
+
+.totalYen {
+  font-size: 18px;
+  color: #9FE1CB;
+}
+
+.totalTaxInc {
+  font-size: 14px;
+  color: #9FE1CB;
+  margin-left: 4px;
+}
+
+.divider {
+  border: none;
+  border-top: 0.5px solid #0F6E56;
+  margin: 16px 0;
+}
+
+.subRow {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+}
+
+.subItem {
+  font-size: 18px;
+  color: #5DCAA5;
+}
+
+.subLabel {
+  font-size: 13px;
+  color: #9FE1CB;
+  margin-right: 4px;
+}
+
+.discountRow {
+  margin-top: 8px;
+  font-size: 15px;
+  color: #9FE1CB;
+}
+
+/* 保守・有効期限 */
+.noteText {
+  font-size: 14px;
+  color: #0F6E56;
+  margin-bottom: 8px;
+  padding: 0 4px;
+}
+
+/* 内訳テーブル */
+.breakdownHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 28px 0 12px;
+}
+
+.breakdownTitle {
+  font-size: 17px;
+  font-weight: 500;
+  color: #085041;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 0.5px solid #ddd;
+  margin-bottom: 24px;
+}
+
+.tableHead th {
+  background-color: #1D9E75;
+  color: #FFFFFF;
+  font-size: 13px;
+  font-weight: 500;
+  padding: 10px 12px;
+  text-align: left;
+}
+
+.tableHead th:nth-child(2),
+.tableHead th:nth-child(3),
+.tableHead th:nth-child(4) {
+  text-align: right;
+}
+
+.tableRow td {
+  font-size: 14px;
+  padding: 10px 12px;
+  color: #085041;
+}
+
+.tableRow td:nth-child(2),
+.tableRow td:nth-child(3),
+.tableRow td:nth-child(4) {
+  text-align: right;
+}
+
+.tableRowEven {
+  background-color: #E1F5EE;
+}
+
+.summaryRow td {
+  border-top: 2px solid #1D9E75;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 10px 12px;
+  color: #085041;
+}
+
+.summaryRow td:last-child {
+  text-align: right;
+}
+
+.totalSummaryRow td {
+  font-size: 15px;
+  font-weight: 500;
+  color: #085041;
+}
+
+/* 出力ボタン */
+.exportGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 28px;
+}
+
+.exportButton {
+  background-color: #E1F5EE;
+  color: #085041;
+  border: none;
+  border-radius: 8px;
+  padding: 14px;
+  font-size: 14px;
+  font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.exportIcon {
+  width: 28px;
+  height: 28px;
+  border-radius: 4px;
+  color: #FFFFFF;
+  font-size: 11px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* ボタン */
+.buttons {
+  display: flex;
+  gap: 16px;
+  padding: 24px 0;
+}
+
+.backButton {
+  flex: 1;
+  border-radius: 8px;
+  border: 0.5px solid #ddd;
+  background: #FFFFFF;
+  color: #0F6E56;
+  padding: 16px;
+  font-size: 16px;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.resetButton {
+  flex: 2;
+  border-radius: 8px;
+  border: none;
+  background: #1D9E75;
+  color: #FFFFFF;
+  font-weight: 500;
+  padding: 16px;
+  font-size: 16px;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+/* レスポンシブ */
+@media (max-width: 768px) {
+  .container {
+    padding: 20px 16px;
+    padding-bottom: 20px;
+  }
+
+  .totalAmount {
+    font-size: 32px;
+  }
+
+  .subRow {
+    flex-direction: column;
+    gap: 4px;
+    align-items: center;
+  }
+
+  .exportGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .buttons {
+    gap: 12px;
+    padding: 20px 0;
+  }
+
+  .backButton,
+  .resetButton {
+    padding: 14px;
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 16px 12px;
+    padding-bottom: 16px;
+  }
+
+  .priceCard {
+    padding: 20px 16px;
+  }
+
+  .totalAmount {
+    font-size: 28px;
+  }
+}
