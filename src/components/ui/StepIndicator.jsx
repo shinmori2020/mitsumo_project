@@ -3,7 +3,7 @@ import styles from './StepIndicator.module.css';
 
 const STEP_LABELS = ['基本情報', '機能選択', 'デザイン', 'オプション', '結果'];
 
-export default function StepIndicator({ currentStep, sidebarPosition, onToggleSidebar }) {
+export default function StepIndicator({ currentStep, sidebarPosition, onToggleSidebar, onStepClick }) {
   return (
     <header className={styles.header}>
       <div className={styles.topRow}>
@@ -26,6 +26,7 @@ export default function StepIndicator({ currentStep, sidebarPosition, onToggleSi
           const stepNum = i + 1;
           const isCompleted = stepNum < currentStep;
           const isCurrent = stepNum === currentStep;
+          const isClickable = isCompleted;
           return (
             <div key={stepNum} style={{ display: 'flex', alignItems: 'center' }}>
               {i > 0 && (
@@ -35,7 +36,12 @@ export default function StepIndicator({ currentStep, sidebarPosition, onToggleSi
                   }`}
                 />
               )}
-              <div className={styles.stepItem}>
+              <div
+                className={`${styles.stepItem} ${isClickable ? styles.stepClickable : ''}`}
+                onClick={isClickable ? () => onStepClick(stepNum) : undefined}
+                role={isClickable ? 'button' : undefined}
+                aria-label={isClickable ? `${label}に戻る` : undefined}
+              >
                 <div
                   className={`${styles.circle} ${
                     isCurrent

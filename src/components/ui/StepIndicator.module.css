@@ -67,6 +67,16 @@
   align-items: center;
 }
 
+.stepClickable {
+  cursor: pointer;
+}
+
+.stepClickable:hover .circleCompleted {
+  background-color: #FFFFFF;
+  transform: scale(1.1);
+  transition: transform 0.15s, background-color 0.15s;
+}
+
 .circle {
   width: 36px;
   height: 36px;

@@ -188,6 +188,11 @@
   gap: 10px;
 }
 
+.exportButton:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+
 .exportIcon {
   width: 28px;
   height: 28px;

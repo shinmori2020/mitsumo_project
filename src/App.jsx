@@ -16,12 +16,18 @@ function App() {
   const [sidebarPosition, setSidebarPosition] = useState('left');
   const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
 
+  const scrollToTop = () => window.scrollTo({ top: 0, behavior: 'smooth' });
+
   const handleNext = () => {
-    if (currentStep < 5) setCurrentStep(currentStep + 1);
+    if (currentStep < 5) { setCurrentStep(currentStep + 1); scrollToTop(); }
   };
 
   const handleBack = () => {
-    if (currentStep > 1) setCurrentStep(currentStep - 1);
+    if (currentStep > 1) { setCurrentStep(currentStep - 1); scrollToTop(); }
+  };
+
+  const handleStepClick = (step) => {
+    if (step < currentStep) { setCurrentStep(step); scrollToTop(); }
   };
 
   const toggleSidebar = () => {
@@ -56,6 +62,7 @@ function App() {
             currentStep={currentStep}
             sidebarPosition={sidebarPosition}
             onToggleSidebar={toggleSidebar}
+            onStepClick={handleStepClick}
           />
 
           <main className="main-content">

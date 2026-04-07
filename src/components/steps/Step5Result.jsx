@@ -14,6 +14,7 @@ const SUPPORT_PRICES = { light: 5000, standard: 15000 };
 
 export default function Step5Result({ estimate, price, onBack, onReset }) {
   const [showBreakdown, setShowBreakdown] = useState(true);
+  const [pdfLoading, setPdfLoading] = useState(false);
   const items = buildBreakdown(estimate);
 
   // 有効期限の算出
@@ -146,12 +147,14 @@ export default function Step5Result({ estimate, price, onBack, onReset }) {
           <span className={styles.exportIcon} style={{ backgroundColor: '#0F6E56' }}>XL</span>
           Excel出力
         </button>
-        <button className={styles.exportButton} onClick={async () => {
+        <button className={styles.exportButton} disabled={pdfLoading} onClick={async () => {
+          setPdfLoading(true);
           try { await exportPdf(estimate, price); }
           catch (e) { alert('PDF生成中にエラーが発生しました'); }
+          finally { setPdfLoading(false); }
         }}>
           <span className={styles.exportIcon} style={{ backgroundColor: '#C00000' }}>PDF</span>
-          PDF出力
+          {pdfLoading ? 'PDF生成中...' : 'PDF出力'}
         </button>
         <button className={styles.exportButton} onClick={async () => {
           const ok = await copyText(estimate, price);
