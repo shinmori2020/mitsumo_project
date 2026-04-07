@@ -30,6 +30,18 @@ function App() {
 
   return (
     <div className="app">
+      {/* モバイル用ハンバーガーボタン（ルートレベルで最前面に配置） */}
+      <button
+        type="button"
+        className={`mobile-hamburger ${mobileSidebarOpen ? 'mobile-hamburger-open' : ''}`}
+        onClick={toggleMobileSidebar}
+        aria-label={mobileSidebarOpen ? '閉じる' : '選択内容を表示'}
+      >
+        <span className="mobile-hamburger-line" />
+        <span className="mobile-hamburger-line" />
+        <span className="mobile-hamburger-line" />
+      </button>
+
       <div className={`layout ${sidebarPosition === 'right' ? 'layout-right' : 'layout-left'}`}>
         <div className="sidebar-wrapper">
           <Sidebar estimate={estimate} price={price} position={sidebarPosition} />
@@ -40,8 +52,6 @@ function App() {
             currentStep={currentStep}
             sidebarPosition={sidebarPosition}
             onToggleSidebar={toggleSidebar}
-            mobileSidebarOpen={mobileSidebarOpen}
-            onToggleMobileSidebar={toggleMobileSidebar}
           />
 
           <main className="main-content">

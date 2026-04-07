@@ -1,35 +1,23 @@
-// ステップインジケーター（上部固定）+ サイドバー左右切り替えスイッチ + モバイルメニュー
+// ステップインジケーター（上部固定）+ サイドバー左右切り替えスイッチ
 import styles from './StepIndicator.module.css';
 
 const STEP_LABELS = ['基本情報', '機能選択', 'デザイン', 'オプション', '結果'];
 
-export default function StepIndicator({ currentStep, sidebarPosition, onToggleSidebar, mobileSidebarOpen, onToggleMobileSidebar }) {
+export default function StepIndicator({ currentStep, sidebarPosition, onToggleSidebar }) {
   return (
     <header className={styles.header}>
       <div className={styles.topRow}>
         <div className={styles.title}>MitsuMO</div>
-        <div className={styles.rightControls}>
-          <div className={styles.sidebarToggle}>
-            <span className={styles.toggleLabel}>サイドバー</span>
-            <button
-              type="button"
-              className={styles.toggleButton}
-              onClick={onToggleSidebar}
-              aria-label="サイドバーの位置を切り替え"
-            >
-              <span className={`${styles.toggleOption} ${sidebarPosition === 'left' ? styles.toggleActive : ''}`}>左</span>
-              <span className={`${styles.toggleOption} ${sidebarPosition === 'right' ? styles.toggleActive : ''}`}>右</span>
-            </button>
-          </div>
+        <div className={styles.sidebarToggle}>
+          <span className={styles.toggleLabel}>サイドバー</span>
           <button
             type="button"
-            className={`${styles.hamburger} ${mobileSidebarOpen ? styles.hamburgerOpen : ''}`}
-            onClick={onToggleMobileSidebar}
-            aria-label={mobileSidebarOpen ? '閉じる' : '選択内容を表示'}
+            className={styles.toggleButton}
+            onClick={onToggleSidebar}
+            aria-label="サイドバーの位置を切り替え"
           >
-            <span className={styles.hamburgerLine} />
-            <span className={styles.hamburgerLine} />
-            <span className={styles.hamburgerLine} />
+            <span className={`${styles.toggleOption} ${sidebarPosition === 'left' ? styles.toggleActive : ''}`}>左</span>
+            <span className={`${styles.toggleOption} ${sidebarPosition === 'right' ? styles.toggleActive : ''}`}>右</span>
           </button>
         </div>
       </div>

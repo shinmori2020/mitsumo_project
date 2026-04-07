@@ -19,12 +19,6 @@
   font-weight: 500;
 }
 
-.rightControls {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
 .sidebarToggle {
   display: flex;
   align-items: center;
@@ -59,56 +53,6 @@
   background-color: #FFFFFF;
   color: #085041;
   font-weight: 500;
-}
-
-/* ハンバーガーボタン（デスクトップでは非表示） */
-.hamburger {
-  display: none;
-  width: 28px;
-  height: 24px;
-  padding: 0;
-  background: none;
-  border: none;
-  cursor: pointer;
-  position: relative;
-}
-
-.hamburgerLine {
-  display: block;
-  position: absolute;
-  left: 0;
-  width: 100%;
-  height: 3px;
-  background-color: #E1F5EE;
-  border-radius: 1px;
-  transition: transform 0.3s ease, opacity 0.3s ease;
-}
-
-.hamburgerLine:nth-child(1) {
-  top: 2px;
-}
-
-.hamburgerLine:nth-child(2) {
-  top: 11px;
-}
-
-.hamburgerLine:nth-child(3) {
-  top: 20px;
-}
-
-/* 開いた時：✕に変化 */
-.hamburgerOpen .hamburgerLine:nth-child(1) {
-  top: 11px;
-  transform: rotate(45deg);
-}
-
-.hamburgerOpen .hamburgerLine:nth-child(2) {
-  opacity: 0;
-}
-
-.hamburgerOpen .hamburgerLine:nth-child(3) {
-  top: 11px;
-  transform: rotate(-45deg);
 }
 
 .steps {
@@ -177,22 +121,10 @@
   background-color: #5DCAA5;
 }
 
-/* タブレット以下：切り替えスイッチ非表示、ハンバーガー表示 */
+/* タブレット以下 */
 @media (max-width: 1024px) {
   .sidebarToggle {
     display: none;
-  }
-
-  .header {
-    z-index: 250;
-  }
-
-  .hamburger {
-    display: flex;
-    position: fixed;
-    top: 16px;
-    right: 16px;
-    z-index: 300;
   }
 }
 
