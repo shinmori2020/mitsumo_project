@@ -24,6 +24,10 @@ function App() {
     setSidebarPosition(prev => prev === 'left' ? 'right' : 'left');
   };
 
+  const toggleMobileSidebar = () => {
+    setMobileSidebarOpen(prev => !prev);
+  };
+
   return (
     <div className="app">
       <div className={`layout ${sidebarPosition === 'right' ? 'layout-right' : 'layout-left'}`}>
@@ -36,7 +40,8 @@ function App() {
             currentStep={currentStep}
             sidebarPosition={sidebarPosition}
             onToggleSidebar={toggleSidebar}
-            onToggleMobileSidebar={() => setMobileSidebarOpen(true)}
+            mobileSidebarOpen={mobileSidebarOpen}
+            onToggleMobileSidebar={toggleMobileSidebar}
           />
 
           <main className="main-content">
@@ -62,13 +67,6 @@ function App() {
       <div className={`mobile-overlay ${mobileSidebarOpen ? 'open' : ''}`}>
         <div className="mobile-backdrop" onClick={() => setMobileSidebarOpen(false)} />
         <div className="mobile-sidebar">
-          <button
-            className="mobile-close"
-            onClick={() => setMobileSidebarOpen(false)}
-            aria-label="閉じる"
-          >
-            ✕
-          </button>
           <Sidebar estimate={estimate} price={price} position="left" />
         </div>
       </div>

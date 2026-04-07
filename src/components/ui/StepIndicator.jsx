@@ -3,7 +3,7 @@ import styles from './StepIndicator.module.css';
 
 const STEP_LABELS = ['基本情報', '機能選択', 'デザイン', 'オプション', '結果'];
 
-export default function StepIndicator({ currentStep, sidebarPosition, onToggleSidebar, onToggleMobileSidebar }) {
+export default function StepIndicator({ currentStep, sidebarPosition, onToggleSidebar, mobileSidebarOpen, onToggleMobileSidebar }) {
   return (
     <header className={styles.header}>
       <div className={styles.topRow}>
@@ -23,9 +23,9 @@ export default function StepIndicator({ currentStep, sidebarPosition, onToggleSi
           </div>
           <button
             type="button"
-            className={styles.hamburger}
+            className={`${styles.hamburger} ${mobileSidebarOpen ? styles.hamburgerOpen : ''}`}
             onClick={onToggleMobileSidebar}
-            aria-label="選択内容を表示"
+            aria-label={mobileSidebarOpen ? '閉じる' : '選択内容を表示'}
           >
             <span className={styles.hamburgerLine} />
             <span className={styles.hamburgerLine} />
