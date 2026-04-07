@@ -183,6 +183,10 @@
     display: none;
   }
 
+  .header {
+    z-index: 250;
+  }
+
   .hamburger {
     display: flex;
   }
