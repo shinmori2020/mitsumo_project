@@ -5,6 +5,7 @@ import StepIndicator from './components/ui/StepIndicator';
 import PriceBar from './components/ui/PriceBar';
 import Sidebar from './components/ui/Sidebar';
 import Step1BasicInfo from './components/steps/Step1BasicInfo';
+import Step2Features from './components/steps/Step2Features';
 import './App.css';
 
 function App() {
@@ -62,7 +63,15 @@ function App() {
                 onNext={handleNext}
               />
             )}
-            {currentStep >= 2 && (
+            {currentStep === 2 && (
+              <Step2Features
+                estimate={estimate}
+                updateField={updateField}
+                onNext={handleNext}
+                onBack={handleBack}
+              />
+            )}
+            {currentStep >= 3 && (
               <div style={{ padding: '24px', paddingBottom: '100px', textAlign: 'center', color: '#0F6E56' }}>
                 <p>Step {currentStep} は今後実装予定です</p>
               </div>
