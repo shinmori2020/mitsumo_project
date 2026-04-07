@@ -36,10 +36,10 @@ const initialEstimate = {
   ecCart: false,
 
   // Step3：デザイン仕様（金額に影響しない）
-  colorMain: '#1D9E75',
-  colorSub: '#E1F5EE',
-  colorAccent: '#F59E0B',
-  fontStyle: 'soft',
+  colorMain: '#2B4C7E',
+  colorSub: '#4A90D9',
+  colorAccent: '#E8913A',
+  fontStyle: 'sharp',
   layoutPattern: 'A',
   referenceUrl1: '',
   referenceUrl2: '',
