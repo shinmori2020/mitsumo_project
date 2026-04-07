@@ -189,6 +189,10 @@
 
   .hamburger {
     display: flex;
+    position: fixed;
+    top: 16px;
+    right: 16px;
+    z-index: 300;
   }
 }
 
