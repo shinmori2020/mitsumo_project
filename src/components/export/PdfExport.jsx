@@ -173,35 +173,41 @@ export async function exportPdf(estimate, price) {
       logging: false,
     });
 
-    const imgData = canvas.toDataURL('image/png');
     const pdf = new jsPDF('p', 'mm', 'a4');
     const pdfWidth = pdf.internal.pageSize.getWidth();
     const pdfHeight = pdf.internal.pageSize.getHeight();
-    const imgWidth = pdfWidth - 20;
-    const imgHeight = (canvas.height * imgWidth) / canvas.width;
+    const margin = 10;
+    const imgWidth = pdfWidth - margin * 2;
+    const pageContentHeight = pdfHeight - margin * 2;
 
-    let yOffset = 10;
-    let remainingHeight = imgHeight;
-    const pageContentHeight = pdfHeight - 20;
+    // キャンバスのピクセル数 → PDFのmm換算
+    const ratio = imgWidth / canvas.width;
+    const totalPdfHeight = canvas.height * ratio;
 
-    // 複数ページに分割
-    while (remainingHeight > 0) {
-      if (yOffset !== 10) pdf.addPage();
-      const sourceY = (imgHeight - remainingHeight) * (canvas.width / imgWidth);
-      const sourceHeight = Math.min(pageContentHeight * (canvas.width / imgWidth), remainingHeight * (canvas.width / imgWidth));
+    // 1ページに収まるキャンバスのピクセル高さ
+    const pageCanvasHeight = Math.floor(pageContentHeight / ratio);
 
+    let currentY = 0;
+    let pageIndex = 0;
+
+    while (currentY < canvas.height) {
+      if (pageIndex > 0) pdf.addPage();
+
+      const sliceHeight = Math.min(pageCanvasHeight, canvas.height - currentY);
+
+      // キャンバスの一部を切り出し
       const pageCanvas = document.createElement('canvas');
       pageCanvas.width = canvas.width;
-      pageCanvas.height = sourceHeight;
+      pageCanvas.height = sliceHeight;
       const ctx = pageCanvas.getContext('2d');
-      ctx.drawImage(canvas, 0, sourceY, canvas.width, sourceHeight, 0, 0, canvas.width, sourceHeight);
+      ctx.drawImage(canvas, 0, currentY, canvas.width, sliceHeight, 0, 0, canvas.width, sliceHeight);
 
       const pageImg = pageCanvas.toDataURL('image/png');
-      const drawHeight = Math.min(pageContentHeight, remainingHeight);
-      pdf.addImage(pageImg, 'PNG', 10, 10, imgWidth, drawHeight);
+      const drawHeight = sliceHeight * ratio;
+      pdf.addImage(pageImg, 'PNG', margin, margin, imgWidth, drawHeight);
 
-      remainingHeight -= pageContentHeight;
-      yOffset = 10;
+      currentY += sliceHeight;
+      pageIndex++;
     }
 
     const clientName = estimate.clientName || '未設定';
