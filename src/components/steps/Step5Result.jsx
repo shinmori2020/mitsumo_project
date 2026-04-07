@@ -2,6 +2,10 @@
 import { useState } from 'react';
 import { formatCurrency } from '../../utils/formatCurrency';
 import { buildBreakdown } from '../../utils/buildBreakdown';
+import { exportExcel } from '../export/ExcelExport';
+import { exportPdf } from '../export/PdfExport';
+import { copyText } from '../export/TextCopy';
+import { sendMail } from '../export/MailSend';
 import styles from './Step5Result.module.css';
 
 const DEADLINE_LABELS = { 1.0: '通常', 1.3: '急ぎ ×1.3', 1.5: '特急 ×1.5' };
@@ -138,19 +142,25 @@ export default function Step5Result({ estimate, price, onBack, onReset }) {
 
       {/* 出力ボタン */}
       <div className={styles.exportGrid}>
-        <button className={styles.exportButton} onClick={() => alert('Excel出力は次のステップで実装します')}>
+        <button className={styles.exportButton} onClick={() => exportExcel(estimate, price)}>
           <span className={styles.exportIcon} style={{ backgroundColor: '#0F6E56' }}>XL</span>
           Excel出力
         </button>
-        <button className={styles.exportButton} onClick={() => alert('PDF出力は次のステップで実装します')}>
+        <button className={styles.exportButton} onClick={async () => {
+          try { await exportPdf(estimate, price); }
+          catch (e) { alert('PDF生成中にエラーが発生しました'); }
+        }}>
           <span className={styles.exportIcon} style={{ backgroundColor: '#C00000' }}>PDF</span>
           PDF出力
         </button>
-        <button className={styles.exportButton} onClick={() => alert('テキストコピーは次のステップで実装します')}>
+        <button className={styles.exportButton} onClick={async () => {
+          const ok = await copyText(estimate, price);
+          if (ok) alert('クリップボードにコピーしました');
+        }}>
           <span className={styles.exportIcon} style={{ backgroundColor: '#085041' }}>Cp</span>
           テキストコピー
         </button>
-        <button className={styles.exportButton} onClick={() => alert('メール送信は次のステップで実装します')}>
+        <button className={styles.exportButton} onClick={() => sendMail(estimate, price)}>
           <span className={styles.exportIcon} style={{ backgroundColor: '#2B4C7E' }}>Mail</span>
           メール送信
         </button>
