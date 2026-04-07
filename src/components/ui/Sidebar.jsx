@@ -106,6 +106,9 @@ export default function Sidebar({ estimate, price, position }) {
       {/* Step2：機能選択（選択されたもののみ表示） */}
       <Step2Summary estimate={estimate} />
 
+      {/* Step3：デザイン仕様 */}
+      <Step3Summary estimate={estimate} />
+
       {/* Step4：オプション（選択されたもののみ表示） */}
       <Step4Summary estimate={estimate} />
     </aside>
@@ -180,6 +183,53 @@ function Step2Summary({ estimate }) {
         {activeItems.map((item) => (
           <ToggleItem key={item.label} label={item.label} on={true} price={item.price} />
         ))}
+      </ul>
+    </div>
+  );
+}
+
+const FONT_STYLE_LABELS = {
+  soft: 'やわらかい',
+  sharp: 'シャープ',
+  formal: 'フォーマル',
+  casual: 'カジュアル',
+};
+
+const LAYOUT_LABELS = {
+  A: 'パターンA',
+  B: 'パターンB',
+  C: 'パターンC',
+  D: 'パターンD',
+};
+
+// Step3サマリー
+function Step3Summary({ estimate }) {
+  return (
+    <div className={styles.section}>
+      <div className={styles.sectionHeader}>Step3 デザイン</div>
+      <ul className={styles.itemList}>
+        <li className={styles.item}>
+          <span className={styles.itemLabel}>配色テーマ</span>
+          <span style={{ display: 'flex', gap: '4px' }}>
+            <span style={{ width: 18, height: 18, borderRadius: 4, backgroundColor: estimate.colorMain, display: 'inline-block' }} />
+            <span style={{ width: 18, height: 18, borderRadius: 4, backgroundColor: estimate.colorSub, display: 'inline-block' }} />
+            <span style={{ width: 18, height: 18, borderRadius: 4, backgroundColor: estimate.colorAccent, display: 'inline-block' }} />
+          </span>
+        </li>
+        <li className={styles.item}>
+          <span className={styles.itemLabel}>フォント</span>
+          <span className={styles.badge}>{FONT_STYLE_LABELS[estimate.fontStyle]}</span>
+        </li>
+        <li className={styles.item}>
+          <span className={styles.itemLabel}>レイアウト</span>
+          <span className={styles.badge}>{LAYOUT_LABELS[estimate.layoutPattern]}</span>
+        </li>
+        {estimate.referenceUrl1 && (
+          <li className={styles.item}>
+            <span className={styles.itemLabel}>参考URL</span>
+            <span className={styles.itemValue}>あり</span>
+          </li>
+        )}
       </ul>
     </div>
   );
