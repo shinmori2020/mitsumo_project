@@ -1,0 +1,173 @@
+.container {
+  padding: 32px;
+  padding-bottom: 100px;
+}
+
+.sectionTitle {
+  font-size: 22px;
+  font-weight: 500;
+  color: #085041;
+}
+
+.sectionDesc {
+  font-size: 16px;
+  color: #0F6E56;
+  margin-bottom: 32px;
+}
+
+.fieldLabel {
+  font-size: 15px;
+  font-weight: 500;
+  color: #0F6E56;
+  margin-bottom: 10px;
+}
+
+.pillGroup {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.discountInput {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.numberInput {
+  width: 160px;
+  padding: 12px 16px;
+  border-radius: 8px;
+  border: 0.5px solid #ddd;
+  font-size: 15px;
+  font-family: inherit;
+}
+
+.numberInput:focus {
+  outline: none;
+  border-color: #1D9E75;
+}
+
+.inputUnit {
+  font-size: 15px;
+  color: #085041;
+  font-weight: 500;
+}
+
+.inputGroup {
+  padding: 16px 20px;
+}
+
+.textInput {
+  width: 100%;
+  padding: 12px 16px;
+  border-radius: 8px;
+  border: 0.5px solid #ddd;
+  font-size: 15px;
+  font-family: inherit;
+  margin-bottom: 12px;
+}
+
+.textInput:focus {
+  outline: none;
+  border-color: #1D9E75;
+}
+
+.textArea {
+  width: 100%;
+  padding: 12px 16px;
+  border-radius: 8px;
+  border: 0.5px solid #ddd;
+  font-size: 15px;
+  font-family: inherit;
+  min-height: 80px;
+  resize: vertical;
+  margin-bottom: 12px;
+}
+
+.textArea:focus {
+  outline: none;
+  border-color: #1D9E75;
+}
+
+.inputLabel {
+  font-size: 13px;
+  font-weight: 500;
+  color: #0F6E56;
+  margin-bottom: 6px;
+}
+
+.buttons {
+  display: flex;
+  gap: 16px;
+  padding: 24px 0;
+}
+
+.backButton {
+  flex: 1;
+  border-radius: 8px;
+  border: 0.5px solid #ddd;
+  background: #FFFFFF;
+  color: #0F6E56;
+  padding: 16px;
+  font-size: 16px;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.nextButton {
+  flex: 2;
+  border-radius: 8px;
+  border: none;
+  background: #1D9E75;
+  color: #FFFFFF;
+  font-weight: 500;
+  padding: 16px;
+  font-size: 16px;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 20px 16px;
+    padding-bottom: 80px;
+  }
+
+  .sectionTitle {
+    font-size: 19px;
+  }
+
+  .sectionDesc {
+    font-size: 14px;
+    margin-bottom: 24px;
+  }
+
+  .pillGroup {
+    gap: 8px;
+  }
+
+  .numberInput {
+    width: 120px;
+  }
+
+  .buttons {
+    gap: 12px;
+    padding: 20px 0;
+  }
+
+  .backButton,
+  .nextButton {
+    padding: 14px;
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 16px 12px;
+    padding-bottom: 80px;
+  }
+}

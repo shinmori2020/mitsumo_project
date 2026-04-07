@@ -7,6 +7,7 @@ import Sidebar from './components/ui/Sidebar';
 import Step1BasicInfo from './components/steps/Step1BasicInfo';
 import Step2Features from './components/steps/Step2Features';
 import Step3Design from './components/steps/Step3Design';
+import Step4Options from './components/steps/Step4Options';
 import './App.css';
 
 function App() {
@@ -80,7 +81,15 @@ function App() {
                 onBack={handleBack}
               />
             )}
-            {currentStep >= 4 && (
+            {currentStep === 4 && (
+              <Step4Options
+                estimate={estimate}
+                updateField={updateField}
+                onNext={handleNext}
+                onBack={handleBack}
+              />
+            )}
+            {currentStep >= 5 && (
               <div style={{ padding: '24px', paddingBottom: '100px', textAlign: 'center', color: '#0F6E56' }}>
                 <p>Step {currentStep} は今後実装予定です</p>
               </div>
