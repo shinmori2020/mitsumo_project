@@ -134,7 +134,10 @@ export default function Step4Options({ estimate, updateField, onNext, onBack }) 
                 min="0"
                 value={estimate.discountValue || ''}
                 placeholder="0"
-                onChange={(e) => updateField('discountValue', Number(e.target.value) || 0)}
+                onChange={(e) => {
+                  const v = Math.max(0, Number(e.target.value) || 0);
+                  updateField('discountValue', v);
+                }}
                 aria-label="値引き額"
               />
               <span className={styles.inputUnit}>円</span>
@@ -149,7 +152,10 @@ export default function Step4Options({ estimate, updateField, onNext, onBack }) 
                 max="100"
                 value={estimate.discountValue || ''}
                 placeholder="0"
-                onChange={(e) => updateField('discountValue', Number(e.target.value) || 0)}
+                onChange={(e) => {
+                  const v = Math.min(100, Math.max(0, Number(e.target.value) || 0));
+                  updateField('discountValue', v);
+                }}
                 aria-label="割引率"
               />
               <span className={styles.inputUnit}>%</span>

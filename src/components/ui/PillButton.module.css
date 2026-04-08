@@ -5,7 +5,16 @@
   font-family: inherit;
   cursor: pointer;
   border: none;
-  transition: background-color 0.2s, color 0.2s;
+  transition: background-color 0.2s, color 0.2s, box-shadow 0.2s, transform 0.15s;
+}
+
+.pill:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(29, 158, 117, 0.2);
+}
+
+.pill:active {
+  transform: translateY(0);
 }
 
 .active {
@@ -17,6 +26,10 @@
 .inactive {
   background-color: #E1F5EE;
   color: #085041;
+}
+
+.inactive:hover {
+  background-color: #d0ede2;
 }
 
 @media (max-width: 768px) {

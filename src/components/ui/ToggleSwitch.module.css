@@ -33,8 +33,12 @@
   border-radius: 13px;
   border: none;
   cursor: pointer;
-  transition: background-color 0.15s;
+  transition: background-color 0.15s, box-shadow 0.15s;
   flex-shrink: 0;
+}
+
+.track:hover {
+  box-shadow: 0 0 0 3px rgba(29, 158, 117, 0.15);
 }
 
 .trackOn {

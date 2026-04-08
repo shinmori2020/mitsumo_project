@@ -1,5 +1,8 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { calculatePrice } from '../utils/calculatePrice';
+
+const STORAGE_KEY = 'mitsumo_estimate';
+const STEP_KEY = 'mitsumo_step';
 
 // 見積もりの初期状態
 const initialEstimate = {
@@ -68,10 +71,43 @@ const initialEstimate = {
   otherNote: '',
 };
 
+// LocalStorageから復元
+function loadFromStorage() {
+  try {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if (saved) {
+      const parsed = JSON.parse(saved);
+      return { ...initialEstimate, ...parsed };
+    }
+  } catch {}
+  return initialEstimate;
+}
+
+function loadStepFromStorage() {
+  try {
+    const saved = localStorage.getItem(STEP_KEY);
+    if (saved) return Number(saved) || 1;
+  } catch {}
+  return 1;
+}
+
 // 見積もり状態管理カスタムフック
 export function useEstimate() {
-  const [estimate, setEstimate] = useState(initialEstimate);
-  const [currentStep, setCurrentStep] = useState(1);
+  const [estimate, setEstimate] = useState(loadFromStorage);
+  const [currentStep, setCurrentStep] = useState(loadStepFromStorage);
+
+  // LocalStorageに保存
+  useEffect(() => {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(estimate));
+    } catch {}
+  }, [estimate]);
+
+  useEffect(() => {
+    try {
+      localStorage.setItem(STEP_KEY, String(currentStep));
+    } catch {}
+  }, [currentStep]);
 
   // 個別フィールドの更新
   const updateField = (field, value) => {
@@ -85,6 +121,10 @@ export function useEstimate() {
   const resetEstimate = () => {
     setEstimate(initialEstimate);
     setCurrentStep(1);
+    try {
+      localStorage.removeItem(STORAGE_KEY);
+      localStorage.removeItem(STEP_KEY);
+    } catch {}
   };
 
   return {
