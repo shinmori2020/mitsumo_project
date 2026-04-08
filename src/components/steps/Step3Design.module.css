@@ -77,7 +77,7 @@
 /* レイアウト選択 */
 .layoutGrid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
   gap: 16px;
   margin-bottom: 24px;
 }
@@ -124,7 +124,6 @@
 
 .textInput {
   width: 100%;
-  max-width: 480px;
   padding: 12px 16px;
   border-radius: 8px;
   border: 0.5px solid #ddd;
@@ -140,7 +139,6 @@
 
 .textArea {
   width: 100%;
-  max-width: 480px;
   padding: 12px 16px;
   border-radius: 8px;
   border: 0.5px solid #ddd;
@@ -222,6 +220,7 @@
   }
 
   .layoutGrid {
+    grid-template-columns: 1fr 1fr;
     gap: 12px;
   }
 
