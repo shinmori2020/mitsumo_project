@@ -47,6 +47,17 @@
 
 .main-content {
   flex: 1;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.main-fade-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.main-fade-out {
+  opacity: 0;
+  transform: translateY(8px);
 }
 
 /* ハンバーガーボタン（デスクトップでは非表示、ルートレベルで最前面） */

@@ -1,5 +1,5 @@
 // MitsuMO - コーディング見積もりシミュレーター
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { useEstimate } from './hooks/useEstimate';
 import StepIndicator from './components/ui/StepIndicator';
 import PriceBar from './components/ui/PriceBar';
@@ -15,19 +15,29 @@ function App() {
   const { estimate, updateField, currentStep, setCurrentStep, price, resetEstimate } = useEstimate();
   const [sidebarPosition, setSidebarPosition] = useState('left');
   const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
+  const [fading, setFading] = useState(false);
+  const mainRef = useRef(null);
 
-  const scrollToTop = () => window.scrollTo({ top: 0, behavior: 'smooth' });
+  // フェードトランジション付きステップ切り替え
+  const changeStep = (newStep) => {
+    setFading(true);
+    setTimeout(() => {
+      setCurrentStep(newStep);
+      window.scrollTo({ top: 0 });
+      setTimeout(() => setFading(false), 30);
+    }, 200);
+  };
 
   const handleNext = () => {
-    if (currentStep < 5) { setCurrentStep(currentStep + 1); scrollToTop(); }
+    if (currentStep < 5) changeStep(currentStep + 1);
   };
 
   const handleBack = () => {
-    if (currentStep > 1) { setCurrentStep(currentStep - 1); scrollToTop(); }
+    if (currentStep > 1) changeStep(currentStep - 1);
   };
 
   const handleStepClick = (step) => {
-    if (step < currentStep) { setCurrentStep(step); scrollToTop(); }
+    if (step < currentStep) changeStep(step);
   };
 
   const toggleSidebar = () => {
@@ -65,7 +75,7 @@ function App() {
             onStepClick={handleStepClick}
           />
 
-          <main className="main-content">
+          <main ref={mainRef} className={`main-content ${fading ? 'main-fade-out' : 'main-fade-in'}`}>
             {currentStep === 1 && (
               <Step1BasicInfo
                 estimate={estimate}
