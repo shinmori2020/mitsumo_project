@@ -338,3 +338,35 @@
     font-size: 28px;
   }
 }
+
+/* 印刷用 */
+@media print {
+  .container {
+    padding: 0;
+  }
+
+  .exportGrid,
+  .editNav,
+  .buttons,
+  .breakdownHeader label {
+    display: none !important;
+  }
+
+  .priceCard {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .table {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .tableHead th,
+  .tableRowEven,
+  .summaryRow td,
+  .totalSummaryRow td {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+}

@@ -71,6 +71,21 @@ const initialEstimate = {
   otherNote: '',
 };
 
+// URLパラメータから復元
+function loadFromUrl() {
+  try {
+    const params = new URLSearchParams(window.location.search);
+    const data = params.get('d');
+    if (data) {
+      const decoded = JSON.parse(atob(data));
+      // URL読み込み後、パラメータをクリア（ブックマーク汚染防止）
+      window.history.replaceState({}, '', window.location.pathname);
+      return { estimate: { ...initialEstimate, ...decoded.e }, step: decoded.s || 5 };
+    }
+  } catch {}
+  return null;
+}
+
 // LocalStorageから復元
 function loadFromStorage() {
   try {
@@ -91,10 +106,23 @@ function loadStepFromStorage() {
   return 1;
 }
 
+// 見積もり状態をURLパラメータにエンコード
+export function encodeEstimateToUrl(estimate, step) {
+  const data = btoa(JSON.stringify({ e: estimate, s: step }));
+  return `${window.location.origin}${window.location.pathname}?d=${data}`;
+}
+
 // 見積もり状態管理カスタムフック
 export function useEstimate() {
-  const [estimate, setEstimate] = useState(loadFromStorage);
-  const [currentStep, setCurrentStep] = useState(loadStepFromStorage);
+  // URL > LocalStorage > 初期値 の優先順で復元
+  const urlData = loadFromUrl();
+
+  const [estimate, setEstimate] = useState(
+    urlData ? urlData.estimate : loadFromStorage
+  );
+  const [currentStep, setCurrentStep] = useState(
+    urlData ? urlData.step : loadStepFromStorage
+  );
 
   // LocalStorageに保存
   useEffect(() => {

@@ -39,3 +39,33 @@ body {
   scrollbar-width: thin;
   scrollbar-color: #9FE1CB #E1F5EE;
 }
+
+/* 印刷用スタイル */
+@media print {
+  /* サイドバー・ハンバーガー・PriceBar・ナビボタンを非表示 */
+  .sidebar-wrapper,
+  .mobile-hamburger,
+  .mobile-overlay {
+    display: none !important;
+  }
+
+  /* レイアウトを1カラムに */
+  .layout {
+    display: block !important;
+  }
+
+  .main-column {
+    transform: none !important;
+  }
+
+  /* 背景色を印刷に反映 */
+  body {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* 余白調整 */
+  .app {
+    min-height: auto;
+  }
+}

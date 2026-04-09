@@ -84,3 +84,9 @@
     align-items: flex-start;
   }
 }
+
+@media print {
+  .bar {
+    display: none !important;
+  }
+}

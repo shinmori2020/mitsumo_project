@@ -6,6 +6,7 @@ import { exportExcel } from '../export/ExcelExport';
 import { exportPdf } from '../export/PdfExport';
 import { copyText } from '../export/TextCopy';
 import { sendMail } from '../export/MailSend';
+import { encodeEstimateToUrl } from '../../hooks/useEstimate';
 import styles from './Step5Result.module.css';
 
 const DEADLINE_LABELS = { 1.0: '通常', 1.3: '急ぎ ×1.3', 1.5: '特急 ×1.5' };
@@ -166,6 +167,18 @@ export default function Step5Result({ estimate, price, onBack, onReset, onGoToSt
         <button className={styles.exportButton} onClick={() => sendMail(estimate, price)}>
           <span className={styles.exportIcon} style={{ backgroundColor: '#2B4C7E' }}>Mail</span>
           メール送信
+        </button>
+        <button className={styles.exportButton} onClick={async () => {
+          const url = encodeEstimateToUrl(estimate, 5);
+          try {
+            await navigator.clipboard.writeText(url);
+            alert('共有URLをコピーしました');
+          } catch {
+            prompt('以下のURLをコピーしてください:', url);
+          }
+        }}>
+          <span className={styles.exportIcon} style={{ backgroundColor: '#1D9E75' }}>URL</span>
+          URLを共有
         </button>
       </div>
 
