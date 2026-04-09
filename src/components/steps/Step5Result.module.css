@@ -144,16 +144,16 @@
 }
 
 .tableRowEven {
-  background-color: #E1F5EE;
+  background-color: #f9f9f9;
 }
 
 .categoryRow td {
-  background-color: #f0f8f4;
+  background-color: #5DCAA5;
   font-size: 12px;
   font-weight: 500;
-  color: #1D9E75;
+  color: #FFFFFF;
   padding: 6px 12px;
-  border-bottom: 1px solid #d0ede2;
+  border-bottom: none;
 }
 
 .summaryRow td {
