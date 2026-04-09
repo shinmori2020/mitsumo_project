@@ -1,4 +1,5 @@
 // サイドバー：選択内容サマリー＋金額表示
+import { useState, useEffect, useRef } from 'react';
 import { formatCurrency } from '../../utils/formatCurrency';
 import { PRICING } from '../../data/pricing';
 import styles from './Sidebar.module.css';
@@ -34,10 +35,22 @@ const DEADLINE_LABELS = {
 };
 
 export default function Sidebar({ estimate, price, position }) {
+  const [pulse, setPulse] = useState(false);
+  const prevTotal = useRef(price.total);
+
+  useEffect(() => {
+    if (price.total !== prevTotal.current) {
+      setPulse(true);
+      prevTotal.current = price.total;
+      const timer = setTimeout(() => setPulse(false), 500);
+      return () => clearTimeout(timer);
+    }
+  }, [price.total]);
+
   return (
     <aside className={`${styles.sidebar} ${position === 'right' ? styles.sidebarRight : ''}`}>
       {/* 金額カード */}
-      <div className={styles.priceCard}>
+      <div className={`${styles.priceCard} ${pulse ? styles.pricePulse : ''}`}>
         <div className={styles.priceLabel}>お見積もり金額</div>
         <div className={styles.priceMainRow}>
           <span className={styles.priceAmount}>{formatCurrency(price.total)}</span>

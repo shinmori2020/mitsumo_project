@@ -186,11 +186,25 @@
   display: flex;
   align-items: center;
   gap: 10px;
+  transition: background-color 0.2s, transform 0.15s, box-shadow 0.2s;
+}
+
+.exportButton:hover {
+  background-color: #d0ede2;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(29, 158, 117, 0.15);
+}
+
+.exportButton:active {
+  transform: translateY(0);
+  box-shadow: none;
 }
 
 .exportButton:disabled {
   opacity: 0.6;
   cursor: wait;
+  transform: none;
+  box-shadow: none;
 }
 
 .exportIcon {
