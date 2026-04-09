@@ -23,14 +23,30 @@ const DISCOUNT_TYPES = [
   { value: 'rate', label: '割引率' },
 ];
 
+const STEP4_TOGGLE_FIELDS = [
+  'optSsl', 'optSeo', 'optSpeed', 'optBrowser', 'optGa', 'optFavicon',
+  'delExport', 'delTest', 'delManual', 'delFix',
+];
+
 export default function Step4Options({ estimate, updateField, onNext, onBack }) {
+  const handleAllOn = () => STEP4_TOGGLE_FIELDS.forEach(f => updateField(f, true));
+  const handleAllOff = () => STEP4_TOGGLE_FIELDS.forEach(f => updateField(f, false));
+
   return (
     <div className={styles.container}>
-      <h2 className={styles.sectionTitle}>その他オプション</h2>
-      <p className={styles.sectionDesc}>最適化や納品、料金に関する設定を行います</p>
+      <div className={styles.titleRow}>
+        <div>
+          <h2 className={styles.sectionTitle}>その他オプション</h2>
+          <p className={styles.sectionDesc}>最適化や納品、料金に関する設定を行います</p>
+        </div>
+        <div className={styles.bulkButtons}>
+          <button className={styles.bulkButton} onClick={handleAllOn}>すべてON</button>
+          <button className={styles.bulkButton} onClick={handleAllOff}>すべてOFF</button>
+        </div>
+      </div>
 
       {/* 最適化・設定グループ */}
-      <GroupCard label="最適化・設定">
+      <GroupCard label="最適化・設定" count={[estimate.optSsl, estimate.optSeo, estimate.optSpeed, estimate.optBrowser, estimate.optGa, estimate.optFavicon].filter(Boolean).length} total={6}>
         <ToggleSwitch
           label="SSL対応"
           checked={estimate.optSsl}
@@ -65,7 +81,7 @@ export default function Step4Options({ estimate, updateField, onNext, onBack }) 
       </GroupCard>
 
       {/* 納品関連グループ */}
-      <GroupCard label="納品関連">
+      <GroupCard label="納品関連" count={[estimate.delExport, estimate.delTest, estimate.delManual, estimate.delFix].filter(Boolean).length} total={4}>
         <ToggleSwitch
           label="デザインデータからの画像書き出し"
           checked={estimate.delExport}

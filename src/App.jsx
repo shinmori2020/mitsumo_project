@@ -112,6 +112,7 @@ function App() {
                 estimate={estimate}
                 price={price}
                 onBack={handleBack}
+                onGoToStep={changeStep}
                 onReset={resetEstimate}
               />
             )}

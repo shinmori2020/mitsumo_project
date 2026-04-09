@@ -12,7 +12,7 @@ const DEADLINE_LABELS = { 1.0: '通常', 1.3: '急ぎ ×1.3', 1.5: '特急 ×1.5
 const SUPPORT_LABELS = { none: 'なし', light: 'ライト（5,000円/月）', standard: 'スタンダード（15,000円/月）' };
 const SUPPORT_PRICES = { light: 5000, standard: 15000 };
 
-export default function Step5Result({ estimate, price, onBack, onReset }) {
+export default function Step5Result({ estimate, price, onBack, onReset, onGoToStep }) {
   const [showBreakdown, setShowBreakdown] = useState(true);
   const [pdfLoading, setPdfLoading] = useState(false);
   const items = buildBreakdown(estimate);
@@ -169,11 +169,19 @@ export default function Step5Result({ estimate, price, onBack, onReset }) {
         </button>
       </div>
 
+      {/* 修正ナビゲーション */}
+      <div className={styles.editNav}>
+        <div className={styles.editLabel}>内容を修正する</div>
+        <div className={styles.editSteps}>
+          <button className={styles.editStepButton} onClick={() => onGoToStep(1)}>Step1 基本情報</button>
+          <button className={styles.editStepButton} onClick={() => onGoToStep(2)}>Step2 機能選択</button>
+          <button className={styles.editStepButton} onClick={() => onGoToStep(3)}>Step3 デザイン</button>
+          <button className={styles.editStepButton} onClick={() => onGoToStep(4)}>Step4 オプション</button>
+        </div>
+      </div>
+
       {/* 下部ボタン */}
       <div className={styles.buttons}>
-        <button className={styles.backButton} onClick={onBack}>
-          内容を修正する
-        </button>
         <button className={styles.resetButton} onClick={handleReset}>
           新しい見積もりを作成
         </button>

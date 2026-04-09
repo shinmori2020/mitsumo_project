@@ -206,6 +206,41 @@
   flex-shrink: 0;
 }
 
+/* 修正ナビゲーション */
+.editNav {
+  margin-bottom: 24px;
+}
+
+.editLabel {
+  font-size: 15px;
+  font-weight: 500;
+  color: #085041;
+  margin-bottom: 10px;
+}
+
+.editSteps {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 8px;
+}
+
+.editStepButton {
+  padding: 12px 8px;
+  border-radius: 8px;
+  border: 0.5px solid #ddd;
+  background: #FFFFFF;
+  color: #0F6E56;
+  font-size: 13px;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background-color 0.2s, border-color 0.2s;
+}
+
+.editStepButton:hover {
+  background: #E1F5EE;
+  border-color: #1D9E75;
+}
+
 /* ボタン */
 .buttons {
   display: flex;
@@ -257,6 +292,10 @@
 
   .exportGrid {
     grid-template-columns: 1fr;
+  }
+
+  .editSteps {
+    grid-template-columns: 1fr 1fr;
   }
 
   .buttons {

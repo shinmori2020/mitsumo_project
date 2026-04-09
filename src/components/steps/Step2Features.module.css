@@ -12,7 +12,37 @@
 .sectionDesc {
   font-size: 16px;
   color: #0F6E56;
-  margin-bottom: 32px;
+  margin-bottom: 0;
+}
+
+.titleRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 24px;
+}
+
+.bulkButtons {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.bulkButton {
+  padding: 8px 14px;
+  border-radius: 8px;
+  border: 0.5px solid #ddd;
+  background: #FFFFFF;
+  color: #0F6E56;
+  font-size: 13px;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background-color 0.2s, border-color 0.2s;
+}
+
+.bulkButton:hover {
+  background: #E1F5EE;
+  border-color: #1D9E75;
 }
 
 .disabledGroup {
