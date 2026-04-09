@@ -1,0 +1,241 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.modal {
+  background: #fff;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 800px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 24px;
+  border-bottom: 0.5px solid #ddd;
+}
+
+.title {
+  font-size: 18px;
+  font-weight: 500;
+  color: #085041;
+}
+
+.closeBtn {
+  width: 32px;
+  height: 32px;
+  border: none;
+  background: none;
+  font-size: 18px;
+  color: #999;
+  cursor: pointer;
+}
+
+.closeBtn:hover {
+  color: #333;
+}
+
+/* 選択パネル */
+.selectPanel {
+  padding: 24px;
+}
+
+.selectLabel {
+  font-size: 15px;
+  color: #085041;
+  margin-bottom: 16px;
+}
+
+.emptyNote {
+  font-size: 14px;
+  color: #999;
+  font-style: italic;
+}
+
+.historyList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.historyItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 16px;
+  border: 0.5px solid #ddd;
+  border-radius: 8px;
+  background: #fff;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background-color 0.2s, border-color 0.2s;
+  text-align: left;
+}
+
+.historyItem:hover {
+  background: #E1F5EE;
+  border-color: #1D9E75;
+}
+
+.historyName {
+  font-size: 15px;
+  font-weight: 500;
+  color: #085041;
+}
+
+.historyMeta {
+  font-size: 13px;
+  color: #0F6E56;
+}
+
+/* 比較コンテンツ */
+.compareContent {
+  padding: 24px;
+}
+
+.priceCompare {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 24px;
+  align-items: center;
+}
+
+.priceCol {
+  flex: 1;
+  text-align: center;
+  padding: 16px;
+  background: #f8fbf9;
+  border-radius: 8px;
+}
+
+.colLabel {
+  font-size: 13px;
+  color: #0F6E56;
+  margin-bottom: 8px;
+}
+
+.colAmount {
+  font-size: 24px;
+  font-weight: 500;
+  color: #085041;
+}
+
+.colSub {
+  font-size: 13px;
+  color: #999;
+  margin-top: 4px;
+}
+
+.diffCol {
+  text-align: center;
+  padding: 12px;
+  flex-shrink: 0;
+}
+
+.diffLabel {
+  font-size: 11px;
+  color: #999;
+  margin-bottom: 4px;
+}
+
+.diffAmount {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.diffPlus {
+  color: #c00;
+}
+
+.diffMinus {
+  color: #1D9E75;
+}
+
+/* テーブル */
+.tableWrap {
+  max-height: 400px;
+  overflow-y: auto;
+  margin-bottom: 16px;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.table th {
+  background: #1D9E75;
+  color: #fff;
+  padding: 8px 12px;
+  text-align: left;
+  font-weight: 500;
+  position: sticky;
+  top: 0;
+}
+
+.table th:nth-child(2),
+.table th:nth-child(3) {
+  text-align: right;
+  width: 120px;
+}
+
+.table td {
+  padding: 8px 12px;
+  border-bottom: 0.5px solid #eee;
+  color: #085041;
+}
+
+.amountCell {
+  text-align: right;
+}
+
+.diffRow {
+  background: #FFF9E6;
+}
+
+.backBtn {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: 0.5px solid #ddd;
+  background: #fff;
+  color: #0F6E56;
+  font-size: 14px;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.backBtn:hover {
+  background: #E1F5EE;
+}
+
+@media (max-width: 768px) {
+  .priceCompare {
+    flex-direction: column;
+  }
+
+  .colAmount {
+    font-size: 20px;
+  }
+
+  .modal {
+    max-height: 95vh;
+  }
+}

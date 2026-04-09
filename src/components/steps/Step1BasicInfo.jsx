@@ -7,6 +7,7 @@ import GroupCard from '../ui/GroupCard';
 import { PRICING } from '../../data/pricing';
 import { getHistory, deleteFromHistory } from '../../utils/estimateHistory';
 import { formatCurrency } from '../../utils/formatCurrency';
+import { TEMPLATES } from '../../data/templates';
 import styles from './Step1BasicInfo.module.css';
 
 const SITE_TYPES = [
@@ -68,6 +69,27 @@ export default function Step1BasicInfo({ estimate, updateField, onNext, onLoadEs
           )}
         </div>
       )}
+
+      {/* テンプレート */}
+      <div className={styles.templateSection}>
+        <div className={styles.templateLabel}>テンプレートから始める</div>
+        <div className={styles.templateGrid}>
+          {TEMPLATES.map((tpl) => (
+            <button
+              key={tpl.id}
+              className={styles.templateCard}
+              onClick={() => {
+                if (window.confirm(`「${tpl.name}」テンプレートを適用しますか？\n現在の入力内容は上書きされます。`)) {
+                  onLoadEstimate(tpl.fields);
+                }
+              }}
+            >
+              <span className={styles.templateName}>{tpl.name}</span>
+              <span className={styles.templateDesc}>{tpl.desc}</span>
+            </button>
+          ))}
+        </div>
+      </div>
 
       {/* サイトの種類 */}
       <GroupCard label="サイトの種類">

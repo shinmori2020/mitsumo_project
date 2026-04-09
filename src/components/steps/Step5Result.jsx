@@ -8,6 +8,7 @@ import { copyText } from '../export/TextCopy';
 import { sendMail } from '../export/MailSend';
 import { encodeEstimateToUrl } from '../../hooks/useEstimate';
 import { saveToHistory } from '../../utils/estimateHistory';
+import CompareModal from './CompareModal';
 import styles from './Step5Result.module.css';
 
 const DEADLINE_LABELS = { 1.0: '通常', 1.3: '急ぎ ×1.3', 1.5: '特急 ×1.5' };
@@ -17,6 +18,7 @@ const SUPPORT_PRICES = { light: 5000, standard: 15000 };
 export default function Step5Result({ estimate, price, onReset, onGoToStep }) {
   const [showBreakdown, setShowBreakdown] = useState(true);
   const [pdfLoading, setPdfLoading] = useState(false);
+  const [showCompare, setShowCompare] = useState(false);
   const items = buildBreakdown(estimate);
 
   // 有効期限の算出
@@ -205,7 +207,19 @@ export default function Step5Result({ estimate, price, onReset, onGoToStep }) {
           <span className={styles.exportIcon} style={{ backgroundColor: '#5DCAA5' }}>保存</span>
           履歴に保存
         </button>
+        <button className={styles.exportButton} onClick={() => setShowCompare(true)}>
+          <span className={styles.exportIcon} style={{ backgroundColor: '#085041' }}>比較</span>
+          見積もり比較
+        </button>
       </div>
+
+      {showCompare && (
+        <CompareModal
+          currentEstimate={estimate}
+          currentPrice={price}
+          onClose={() => setShowCompare(false)}
+        />
+      )}
 
       {/* 修正ナビゲーション */}
       <div className={styles.editNav}>
