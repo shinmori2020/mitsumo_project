@@ -15,6 +15,105 @@
   margin-bottom: 32px;
 }
 
+/* 履歴パネル */
+.historySection {
+  margin-bottom: 24px;
+}
+
+.historyToggle {
+  width: 100%;
+  padding: 12px 16px;
+  background: #E1F5EE;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #085041;
+  cursor: pointer;
+  font-family: inherit;
+  text-align: left;
+  transition: background-color 0.2s;
+}
+
+.historyToggle:hover {
+  background: #d0ede2;
+}
+
+.historyList {
+  border: 0.5px solid #ddd;
+  border-radius: 0 0 8px 8px;
+  overflow: hidden;
+}
+
+.historyItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  border-bottom: 0.5px solid #eee;
+}
+
+.historyItem:last-child {
+  border-bottom: none;
+}
+
+.historyInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.historyName {
+  font-size: 14px;
+  font-weight: 500;
+  color: #085041;
+}
+
+.historyMeta {
+  font-size: 12px;
+  color: #0F6E56;
+}
+
+.historyActions {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.historyLoad {
+  padding: 6px 14px;
+  border-radius: 8px;
+  border: none;
+  background: #1D9E75;
+  color: #fff;
+  font-size: 13px;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.historyLoad:hover {
+  background: #178a66;
+}
+
+.historyDelete {
+  padding: 6px 14px;
+  border-radius: 8px;
+  border: 0.5px solid #ddd;
+  background: #fff;
+  color: #999;
+  font-size: 13px;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.historyDelete:hover {
+  background: #fee;
+  color: #c00;
+  border-color: #fcc;
+}
+
 .fieldLabel {
   font-size: 16px;
   font-weight: 500;

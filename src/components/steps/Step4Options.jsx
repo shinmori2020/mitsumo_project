@@ -250,7 +250,12 @@ export default function Step4Options({ estimate, updateField, onNext, onBack }) 
         <button className={styles.backButton} onClick={onBack}>
           戻る
         </button>
-        <button className={styles.nextButton} onClick={onNext}>
+        <button className={styles.nextButton} onClick={() => {
+          if (!estimate.clientName.trim()) {
+            if (!window.confirm('お客様名が未入力です。このまま結果を表示しますか？')) return;
+          }
+          onNext();
+        }}>
           結果を見る
         </button>
       </div>

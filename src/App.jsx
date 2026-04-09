@@ -12,7 +12,7 @@ import Step5Result from './components/steps/Step5Result';
 import './App.css';
 
 function App() {
-  const { estimate, updateField, currentStep, setCurrentStep, price, resetEstimate } = useEstimate();
+  const { estimate, updateField, currentStep, setCurrentStep, price, resetEstimate, loadEstimate } = useEstimate();
   const [sidebarPosition, setSidebarPosition] = useState('left');
   const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
   const [fading, setFading] = useState(false);
@@ -81,6 +81,7 @@ function App() {
                 estimate={estimate}
                 updateField={updateField}
                 onNext={handleNext}
+                onLoadEstimate={loadEstimate}
               />
             )}
             {currentStep === 2 && (
@@ -111,7 +112,6 @@ function App() {
               <Step5Result
                 estimate={estimate}
                 price={price}
-                onBack={handleBack}
                 onGoToStep={changeStep}
                 onReset={resetEstimate}
               />

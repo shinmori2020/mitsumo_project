@@ -7,13 +7,14 @@ import { exportPdf } from '../export/PdfExport';
 import { copyText } from '../export/TextCopy';
 import { sendMail } from '../export/MailSend';
 import { encodeEstimateToUrl } from '../../hooks/useEstimate';
+import { saveToHistory } from '../../utils/estimateHistory';
 import styles from './Step5Result.module.css';
 
 const DEADLINE_LABELS = { 1.0: '通常', 1.3: '急ぎ ×1.3', 1.5: '特急 ×1.5' };
 const SUPPORT_LABELS = { none: 'なし', light: 'ライト（5,000円/月）', standard: 'スタンダード（15,000円/月）' };
 const SUPPORT_PRICES = { light: 5000, standard: 15000 };
 
-export default function Step5Result({ estimate, price, onBack, onReset, onGoToStep }) {
+export default function Step5Result({ estimate, price, onReset, onGoToStep }) {
   const [showBreakdown, setShowBreakdown] = useState(true);
   const [pdfLoading, setPdfLoading] = useState(false);
   const items = buildBreakdown(estimate);
@@ -179,6 +180,13 @@ export default function Step5Result({ estimate, price, onBack, onReset, onGoToSt
         }}>
           <span className={styles.exportIcon} style={{ backgroundColor: '#1D9E75' }}>URL</span>
           URLを共有
+        </button>
+        <button className={styles.exportButton} onClick={() => {
+          saveToHistory(estimate, price);
+          alert('見積もりを履歴に保存しました');
+        }}>
+          <span className={styles.exportIcon} style={{ backgroundColor: '#5DCAA5' }}>保存</span>
+          履歴に保存
         </button>
       </div>
 

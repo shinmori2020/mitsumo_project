@@ -137,9 +137,27 @@ export function useEstimate() {
     } catch {}
   }, [currentStep]);
 
-  // 個別フィールドの更新
+  // 個別フィールドの更新（連動リセット付き）
   const updateField = (field, value) => {
-    setEstimate(prev => ({ ...prev, [field]: value }));
+    setEstimate(prev => {
+      const next = { ...prev, [field]: value };
+
+      // 制作方式がHTMLに変わったらWP固有項目をリセット
+      if (field === 'buildMethod' && value === 'html') {
+        next.wpAcf = false;
+        next.wpAdmin = false;
+        next.wpPlugin = false;
+      }
+
+      // サイト種類がEC以外に変わったらEC項目をリセット
+      if (field === 'siteType' && value !== 'ec') {
+        next.ecBase = false;
+        next.ecProduct = false;
+        next.ecCart = false;
+      }
+
+      return next;
+    });
   };
 
   // 金額計算
@@ -155,6 +173,12 @@ export function useEstimate() {
     } catch {}
   };
 
+  // 履歴から読み込み
+  const loadEstimate = (savedEstimate) => {
+    setEstimate({ ...initialEstimate, ...savedEstimate });
+    setCurrentStep(1);
+  };
+
   return {
     estimate,
     updateField,
@@ -162,5 +186,6 @@ export function useEstimate() {
     setCurrentStep,
     price,
     resetEstimate,
+    loadEstimate,
   };
 }

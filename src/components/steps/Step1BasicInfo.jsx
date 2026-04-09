@@ -1,8 +1,11 @@
 // Step1：サイトの基本情報（カテゴリ1・カテゴリ2）
+import { useState } from 'react';
 import PillButton from '../ui/PillButton';
 import ToggleSwitch from '../ui/ToggleSwitch';
 import Slider from '../ui/Slider';
 import GroupCard from '../ui/GroupCard';
+import { getHistory, deleteFromHistory } from '../../utils/estimateHistory';
+import { formatCurrency } from '../../utils/formatCurrency';
 import styles from './Step1BasicInfo.module.css';
 
 const SITE_TYPES = [
@@ -17,11 +20,53 @@ const BUILD_METHODS = [
   { value: 'wordpress', label: 'WordPress' },
 ];
 
-export default function Step1BasicInfo({ estimate, updateField, onNext }) {
+export default function Step1BasicInfo({ estimate, updateField, onNext, onLoadEstimate }) {
+  const [history, setHistory] = useState(getHistory);
+  const [showHistory, setShowHistory] = useState(false);
+
+  const handleDelete = (id) => {
+    const updated = deleteFromHistory(id);
+    setHistory(updated);
+  };
+
+  const handleLoad = (entry) => {
+    if (window.confirm(`「${entry.clientName}」の見積もりを読み込みますか？\n現在の入力内容は上書きされます。`)) {
+      onLoadEstimate(entry.estimate);
+    }
+  };
+
   return (
     <div className={styles.container}>
       <h2 className={styles.sectionTitle}>サイトの基本情報</h2>
       <p className={styles.sectionDesc}>サイトの種類や構成を選択してください</p>
+
+      {/* 履歴パネル */}
+      {history.length > 0 && (
+        <div className={styles.historySection}>
+          <button
+            className={styles.historyToggle}
+            onClick={() => setShowHistory(!showHistory)}
+          >
+            保存済みの見積もり（{history.length}件）{showHistory ? ' ▲' : ' ▼'}
+          </button>
+          {showHistory && (
+            <div className={styles.historyList}>
+              {history.map((entry) => (
+                <div key={entry.id} className={styles.historyItem}>
+                  <div className={styles.historyInfo}>
+                    <span className={styles.historyName}>{entry.clientName}</span>
+                    <span className={styles.historyMeta}>{entry.date}　¥{formatCurrency(entry.total)}</span>
+                  </div>
+                  <div className={styles.historyActions}>
+                    <button className={styles.historyLoad} onClick={() => handleLoad(entry)}>読込</button>
+                    <button className={styles.historyDelete} onClick={() => handleDelete(entry.id)}>削除</button>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      )}
 
       {/* サイトの種類 */}
       <GroupCard label="サイトの種類">
