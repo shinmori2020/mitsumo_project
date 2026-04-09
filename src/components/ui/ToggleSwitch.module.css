@@ -26,6 +26,26 @@
   margin-top: 2px;
 }
 
+.rightSide {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.inlinePrice {
+  font-size: 13px;
+  font-weight: 500;
+  color: #1D9E75;
+  white-space: nowrap;
+  animation: priceIn 0.2s ease;
+}
+
+@keyframes priceIn {
+  from { opacity: 0; transform: translateX(8px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
 .track {
   position: relative;
   width: 48px;

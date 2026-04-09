@@ -4,6 +4,7 @@ import DropdownSelect from '../ui/DropdownSelect';
 import PillButton from '../ui/PillButton';
 import GroupCard from '../ui/GroupCard';
 import styles from './Step4Options.module.css';
+import { PRICING } from '../../data/pricing';
 
 const SUPPORT_OPTIONS = [
   { value: 'none', label: 'なし' },
@@ -51,32 +52,38 @@ export default function Step4Options({ estimate, updateField, onNext, onBack }) 
           label="SSL対応"
           checked={estimate.optSsl}
           onChange={(v) => updateField('optSsl', v)}
+          price={PRICING.opt_ssl}
         />
         <ToggleSwitch
           label="SEO基本設定"
           description="メタタグ・構造化データ・sitemap"
           checked={estimate.optSeo}
           onChange={(v) => updateField('optSeo', v)}
+          price={PRICING.opt_seo}
         />
         <ToggleSwitch
           label="ページ表示速度最適化"
           checked={estimate.optSpeed}
           onChange={(v) => updateField('optSpeed', v)}
+          price={PRICING.opt_speed}
         />
         <ToggleSwitch
           label="クロスブラウザ対応"
           checked={estimate.optBrowser}
           onChange={(v) => updateField('optBrowser', v)}
+          price={PRICING.opt_browser}
         />
         <ToggleSwitch
           label="GA・サーチコンソール設置"
           checked={estimate.optGa}
           onChange={(v) => updateField('optGa', v)}
+          price={PRICING.opt_ga}
         />
         <ToggleSwitch
           label="ファビコン・OGP画像設定"
           checked={estimate.optFavicon}
           onChange={(v) => updateField('optFavicon', v)}
+          price={PRICING.opt_favicon}
         />
       </GroupCard>
 
@@ -86,22 +93,26 @@ export default function Step4Options({ estimate, updateField, onNext, onBack }) 
           label="デザインデータからの画像書き出し"
           checked={estimate.delExport}
           onChange={(v) => updateField('delExport', v)}
+          price={PRICING.del_export}
         />
         <ToggleSwitch
           label="テストサーバーでの検証・納品"
           checked={estimate.delTest}
           onChange={(v) => updateField('delTest', v)}
+          price={PRICING.del_test}
         />
         <ToggleSwitch
           label="更新マニュアル作成"
           checked={estimate.delManual}
           onChange={(v) => updateField('delManual', v)}
+          price={PRICING.del_manual}
         />
         <ToggleSwitch
           label="公開後の修正対応"
           description="回数制限あり"
           checked={estimate.delFix}
           onChange={(v) => updateField('delFix', v)}
+          price={PRICING.del_fix}
         />
       </GroupCard>
 

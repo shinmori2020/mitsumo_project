@@ -4,6 +4,7 @@ import PillButton from '../ui/PillButton';
 import ToggleSwitch from '../ui/ToggleSwitch';
 import Slider from '../ui/Slider';
 import GroupCard from '../ui/GroupCard';
+import { PRICING } from '../../data/pricing';
 import { getHistory, deleteFromHistory } from '../../utils/estimateHistory';
 import { formatCurrency } from '../../utils/formatCurrency';
 import styles from './Step1BasicInfo.module.css';
@@ -106,6 +107,7 @@ export default function Step1BasicInfo({ estimate, updateField, onNext, onLoadEs
           label="トップページ"
           checked={estimate.topPage}
           onChange={(v) => updateField('topPage', v)}
+          price={PRICING.page_top}
         />
         <Slider
           label="下層ページ数"
@@ -132,18 +134,21 @@ export default function Step1BasicInfo({ estimate, updateField, onNext, onLoadEs
           description="投稿詳細の共通レイアウト"
           checked={estimate.tplBlog}
           onChange={(v) => updateField('tplBlog', v)}
+          price={PRICING.tpl_blog}
         />
         <ToggleSwitch
           label="アーカイブテンプレート"
           description="投稿一覧・カテゴリー一覧"
           checked={estimate.tplArchive}
           onChange={(v) => updateField('tplArchive', v)}
+          price={PRICING.tpl_archive}
         />
         <ToggleSwitch
           label="404ページ"
           description="エラーページのデザイン"
           checked={estimate.page404}
           onChange={(v) => updateField('page404', v)}
+          price={PRICING.page_404}
         />
       </GroupCard>
 
@@ -154,12 +159,14 @@ export default function Step1BasicInfo({ estimate, updateField, onNext, onLoadEs
           description="スマホ・タブレット対応"
           checked={estimate.responsive}
           onChange={(v) => updateField('responsive', v)}
+          price={PRICING.opt_responsive}
         />
         <ToggleSwitch
           label="既存サイトからのデータ移行"
           description="リニューアル案件の場合"
           checked={estimate.dataMigration}
           onChange={(v) => updateField('dataMigration', v)}
+          price={PRICING.del_migration}
         />
       </GroupCard>
 

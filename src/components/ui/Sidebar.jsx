@@ -36,6 +36,7 @@ const DEADLINE_LABELS = {
 
 export default function Sidebar({ estimate, price, position }) {
   const [pulse, setPulse] = useState(false);
+  const [showTaxInc, setShowTaxInc] = useState(true);
   const prevTotal = useRef(price.total);
 
   useEffect(() => {
@@ -51,16 +52,28 @@ export default function Sidebar({ estimate, price, position }) {
     <aside className={`${styles.sidebar} ${position === 'right' ? styles.sidebarRight : ''}`}>
       {/* 金額カード */}
       <div className={`${styles.priceCard} ${pulse ? styles.pricePulse : ''}`}>
-        <div className={styles.priceLabel}>お見積もり金額</div>
+        <div className={styles.priceLabelRow}>
+          <span className={styles.priceLabel}>お見積もり金額</span>
+          <button
+            className={styles.taxToggle}
+            onClick={() => setShowTaxInc(!showTaxInc)}
+          >
+            {showTaxInc ? '税込' : '税抜'}
+          </button>
+        </div>
         <div className={styles.priceMainRow}>
-          <span className={styles.priceAmount}>{formatCurrency(price.total)}</span>
+          <span className={styles.priceAmount}>
+            {formatCurrency(showTaxInc ? price.total : price.afterDiscount)}
+          </span>
           <span className={styles.priceYen}>円</span>
-          <span className={styles.priceTaxInc}>(税込)</span>
+          <span className={styles.priceTaxInc}>({showTaxInc ? '税込' : '税抜'})</span>
         </div>
         <hr className={styles.priceDivider} />
         <div className={styles.priceSubRow}>
-          <span className={styles.priceSubLabel}>税抜</span>
-          <span className={styles.priceSubAmount}>{formatCurrency(price.afterDiscount)}円</span>
+          <span className={styles.priceSubLabel}>{showTaxInc ? '税抜' : '税込'}</span>
+          <span className={styles.priceSubAmount}>
+            {formatCurrency(showTaxInc ? price.afterDiscount : price.total)}円
+          </span>
         </div>
         <div className={styles.priceSubRow}>
           <span className={styles.priceSubLabel}>消費税</span>

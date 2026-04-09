@@ -100,14 +100,31 @@ export default function Step5Result({ estimate, price, onReset, onGoToStep }) {
             </tr>
           </thead>
           <tbody>
-            {items.map((item, i) => (
-              <tr key={i} className={`${styles.tableRow} ${i % 2 === 1 ? styles.tableRowEven : ''}`}>
-                <td>{item.label}</td>
-                <td>{item.qty}</td>
-                <td>¥{formatCurrency(item.unit)}</td>
-                <td>¥{formatCurrency(item.qty * item.unit)}</td>
-              </tr>
-            ))}
+            {(() => {
+              let rowIndex = 0;
+              let lastCategory = '';
+              return items.map((item, i) => {
+                const rows = [];
+                if (item.category !== lastCategory) {
+                  lastCategory = item.category;
+                  rows.push(
+                    <tr key={`cat-${item.category}`} className={styles.categoryRow}>
+                      <td colSpan="4">{item.category}</td>
+                    </tr>
+                  );
+                }
+                rows.push(
+                  <tr key={i} className={`${styles.tableRow} ${rowIndex % 2 === 1 ? styles.tableRowEven : ''}`}>
+                    <td>{item.label}</td>
+                    <td>{item.qty}</td>
+                    <td>¥{formatCurrency(item.unit)}</td>
+                    <td>¥{formatCurrency(item.qty * item.unit)}</td>
+                  </tr>
+                );
+                rowIndex++;
+                return rows;
+              });
+            })()}
           </tbody>
           <tfoot>
             <tr className={styles.summaryRow}>

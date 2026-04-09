@@ -147,6 +147,15 @@
   background-color: #E1F5EE;
 }
 
+.categoryRow td {
+  background-color: #f0f8f4;
+  font-size: 12px;
+  font-weight: 500;
+  color: #1D9E75;
+  padding: 6px 12px;
+  border-bottom: 1px solid #d0ede2;
+}
+
 .summaryRow td {
   border-top: 0.5px solid #ccc;
   font-size: 14px;

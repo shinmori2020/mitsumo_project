@@ -39,9 +39,32 @@
   animation: priceGlow 0.5s ease;
 }
 
+.priceLabelRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 4px;
+}
+
 .priceLabel {
   font-size: 14px;
   color: #9FE1CB;
+}
+
+.taxToggle {
+  font-size: 11px;
+  padding: 3px 10px;
+  border-radius: 10px;
+  border: 1px solid #0F6E56;
+  background: transparent;
+  color: #9FE1CB;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background-color 0.2s;
+}
+
+.taxToggle:hover {
+  background: rgba(255, 255, 255, 0.1);
 }
 
 .priceAmount {
