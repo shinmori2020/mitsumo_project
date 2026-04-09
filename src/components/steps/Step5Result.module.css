@@ -176,8 +176,8 @@
 
 /* 出力ボタン */
 .exportGrid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
+  flex-wrap: wrap;
   gap: 10px;
   margin-bottom: 28px;
 }
@@ -314,7 +314,7 @@
   }
 
   .exportGrid {
-    grid-template-columns: 1fr;
+    flex-direction: column;
   }
 
   .editSteps {
