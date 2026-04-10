@@ -7,7 +7,7 @@ import { getNextEstimateNumber } from '../../utils/estimateNumber';
 import { formatCurrency } from '../../utils/formatCurrency';
 import {
   LABELS, page, heading1, heading2, heading3, priceBox,
-  table, infoTable, tableHead, detailRow, summaryRows,
+  table, infoTable, tableHead, detailRowsWithCategories, summaryRows,
   companyHeader, headerInfo, infoRow, colorRow,
 } from './pdfTemplates';
 
@@ -52,7 +52,7 @@ function buildDetailPages(estimate, price, estNum, validityDays) {
     priceBox(price.total),
     table([
       tableHead(),
-      `<tbody>${firstItems.map((item, i) => detailRow(item, i)).join('')}</tbody>`,
+      `<tbody>${detailRowsWithCategories(firstItems)}</tbody>`,
       isLast ? `<tfoot>${summaryRows(estimate, price)}</tfoot>` : '',
     ].join('')),
     !isLast ? '<p style="text-align:right;font-size:11px;color:#999;margin-top:8px">→ 次ページに続く</p>' : '',
@@ -71,7 +71,7 @@ function buildDetailPages(estimate, price, estNum, validityDays) {
       `<span style="font-size:11px;color:#999">${estimate.clientName || ''}</span></div>`,
       table([
         tableHead(),
-        `<tbody>${chunk.map((item, i) => detailRow(item, currentIndex + i)).join('')}</tbody>`,
+        `<tbody>${detailRowsWithCategories(chunk)}</tbody>`,
         isLastChunk ? `<tfoot>${summaryRows(estimate, price)}</tfoot>` : '',
       ].join('')),
       !isLastChunk ? '<p style="text-align:right;font-size:11px;color:#999;margin-top:8px">→ 次ページに続く</p>' : '',

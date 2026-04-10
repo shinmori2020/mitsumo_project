@@ -49,6 +49,27 @@ export function detailRow(item, index) {
   </tr>`;
 }
 
+// カテゴリヘッダー行
+export function categoryRow(label) {
+  return `<tr><td colspan="5" style="padding:4px 8px;background:#5DCAA5;color:#fff;font-size:11px;font-weight:bold;border:1px solid #5DCAA5">${label}</td></tr>`;
+}
+
+// カテゴリ付き明細行群を生成
+export function detailRowsWithCategories(items) {
+  let lastCategory = '';
+  let index = 0;
+  return items.map((item) => {
+    let html = '';
+    if (item.category && item.category !== lastCategory) {
+      lastCategory = item.category;
+      html += categoryRow(item.category);
+    }
+    html += detailRow(item, index);
+    index++;
+    return html;
+  }).join('');
+}
+
 // 集計行
 export function summaryRows(estimate, price) {
   const rows = [];
