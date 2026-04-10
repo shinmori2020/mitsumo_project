@@ -84,23 +84,26 @@
   .mobile-hamburger {
     display: flex;
     position: fixed;
-    top: 20px;
-    right: 24px;
+    top: 12px;
+    right: 12px;
     z-index: 300;
-    width: 28px;
-    height: 24px;
-    padding: 0;
-    background: none;
+    width: 44px;
+    height: 44px;
+    padding: 10px 8px;
+    background: rgba(8, 80, 65, 0.85);
     border: none;
+    border-radius: 8px;
     cursor: pointer;
     flex-direction: column;
+    backdrop-filter: blur(4px);
   }
 
   .mobile-hamburger-line {
     display: block;
     position: absolute;
-    left: 0;
-    width: 100%;
+    left: 8px;
+    right: 8px;
+    width: auto;
     height: 3px;
     background-color: #E1F5EE;
     border-radius: 1px;
@@ -108,20 +111,20 @@
   }
 
   .mobile-hamburger-line:nth-child(1) {
-    top: 2px;
+    top: 12px;
   }
 
   .mobile-hamburger-line:nth-child(2) {
-    top: 11px;
+    top: 20px;
   }
 
   .mobile-hamburger-line:nth-child(3) {
-    top: 20px;
+    top: 28px;
   }
 
   /* 開いた時：✕に変化 */
   .mobile-hamburger-open .mobile-hamburger-line:nth-child(1) {
-    top: 11px;
+    top: 20px;
     transform: rotate(45deg);
   }
 
@@ -130,7 +133,7 @@
   }
 
   .mobile-hamburger-open .mobile-hamburger-line:nth-child(3) {
-    top: 11px;
+    top: 20px;
     transform: rotate(-45deg);
   }
 
