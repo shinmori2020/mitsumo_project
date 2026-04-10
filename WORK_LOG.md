@@ -295,6 +295,11 @@
 - ホバー時に赤く変化して破壊的操作であることを視覚的に示す
 - 初回実装時にボタンが見えにくかったため、背景・ボーダー・文字を濃く調整
 
+### 32. 細かい仕上げ（2項目）+ デザイン（1項目）
+1. **Excel出力にも自社情報・連番・有効期限を反映**: ExcelExportにcompanyInfo・estimateNumber・validityDaysのimportを追加。Sheet1のヘッダーに自社名・住所・電話・メール・URLを表示。見積番号をランダム → 連番（EST-YYYY-NNNN）に変更。有効期限もvalidityDaysを使用
+2. **トースト通知**: `Toast`コンポーネント新規作成。画面右下にダークグリーンの通知がスライドインし3秒で自動消去。`alert()`を全てtoast()に置換（テキストコピー/URL共有/履歴保存/自社情報保存）。CSSアニメーション付き（slideIn + fadeOut）
+3. **トグルON時の行ハイライト**: ToggleSwitchのrow要素にON時に`rowOn`クラスを追加。薄いグリーン背景（rgba(29,158,117,0.04)）がtransition 0.3sでスムーズに変化
+
 ---
 
 ## 現在のプロジェクト構造
@@ -318,7 +323,8 @@ src/
 │   │   ├── PriceBar.jsx（+module.css）        # 下部金額バー
 │   │   ├── GroupCard.jsx（+module.css）       # グループラベル+ボックス
 │   │   ├── Sidebar.jsx（+module.css）         # サイドバー（サマリー+金額）
-│   │   └── SettingsModal.jsx（+module.css）   # 自社情報設定モーダル
+│   │   ├── SettingsModal.jsx（+module.css）   # 自社情報設定モーダル
+│   │   └── Toast.jsx（+module.css）           # トースト通知
 │   └── export/
 │       ├── ExcelExport.jsx    # Excel出力（xlsx-js-style）
 │       ├── PdfExport.jsx      # PDF出力（html2canvas + jsPDF）
@@ -423,6 +429,8 @@ src/
 | `7594c7d` | 自社情報設定 + 見積番号連番 + 有効期限カスタマイズ + ショートカット |
 | `85dacd4` | Step1にリセットボタン追加 |
 | `94cf5de` | リセットボタンの視認性改善 |
+| `95901d0` | 作業ログ更新（セッション4続き） |
+| `03e8d6d` | Excel自社情報対応 + トースト通知 + トグルONハイライト |
 
 ## 今後の改善候補
 
@@ -430,4 +438,5 @@ src/
 - ダークモード対応
 - 多言語対応（英語版）
 - テンプレートのカスタマイズ・追加機能
-- Excel出力にも自社情報・連番・有効期限を反映
+- 自社情報にロゴ画像アップロード
+- 単価データの編集機能（管理画面から単価を変更可能に）
