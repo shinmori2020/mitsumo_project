@@ -1,6 +1,7 @@
 // 自社情報設定モーダル
 import { useState } from 'react';
 import { getCompanyInfo, saveCompanyInfo } from '../../utils/companyInfo';
+import { toast } from './Toast';
 import styles from './SettingsModal.module.css';
 
 export default function SettingsModal({ onClose }) {
@@ -10,7 +11,7 @@ export default function SettingsModal({ onClose }) {
 
   const handleSave = () => {
     saveCompanyInfo(info);
-    alert('自社情報を保存しました');
+    toast('自社情報を保存しました');
     onClose();
   };
 

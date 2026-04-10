@@ -10,6 +10,7 @@ import Step3Design from './components/steps/Step3Design';
 import Step4Options from './components/steps/Step4Options';
 import Step5Result from './components/steps/Step5Result';
 import SettingsModal from './components/ui/SettingsModal';
+import ToastContainer from './components/ui/Toast';
 import './App.css';
 
 function App() {
@@ -58,7 +59,7 @@ function App() {
         if (currentStep === 5) {
           import('./utils/estimateHistory').then(({ saveToHistory }) => {
             saveToHistory(estimate, price);
-            alert('見積もりを履歴に保存しました');
+            import('./components/ui/Toast').then(({ toast }) => toast('見積もりを履歴に保存しました'));
           });
         }
       }
@@ -167,6 +168,9 @@ function App() {
 
       {/* 設定モーダル */}
       {showSettings && <SettingsModal onClose={() => setShowSettings(false)} />}
+
+      {/* トースト通知 */}
+      <ToastContainer />
     </div>
   );
 }

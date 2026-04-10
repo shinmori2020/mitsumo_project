@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import { formatCurrency } from '../../utils/formatCurrency';
 import { buildBreakdown } from '../../utils/buildBreakdown';
+import { toast } from '../ui/Toast';
 // 出力モジュールはdynamic importで必要時に読み込み（コード分割）
 import { encodeEstimateToUrl } from '../../hooks/useEstimate';
 import { saveToHistory } from '../../utils/estimateHistory';
@@ -182,7 +183,7 @@ export default function Step5Result({ estimate, price, onReset, onGoToStep }) {
         <button className={styles.exportButton} onClick={async () => {
           const { copyText } = await import('../export/TextCopy');
           const ok = await copyText(estimate, price);
-          if (ok) alert('クリップボードにコピーしました');
+          if (ok) toast('クリップボードにコピーしました');
         }}>
           <span className={styles.exportIcon} style={{ backgroundColor: '#085041' }}>Cp</span>
           テキストコピー
@@ -198,7 +199,7 @@ export default function Step5Result({ estimate, price, onReset, onGoToStep }) {
           const url = encodeEstimateToUrl(estimate, 5);
           try {
             await navigator.clipboard.writeText(url);
-            alert('共有URLをコピーしました');
+            toast('共有URLをコピーしました');
           } catch {
             prompt('以下のURLをコピーしてください:', url);
           }
@@ -208,7 +209,7 @@ export default function Step5Result({ estimate, price, onReset, onGoToStep }) {
         </button>
         <button className={styles.exportButton} onClick={() => {
           saveToHistory(estimate, price);
-          alert('見積もりを履歴に保存しました');
+          toast('見積もりを履歴に保存しました');
         }}>
           <span className={styles.exportIcon} style={{ backgroundColor: '#5DCAA5' }}>保存</span>
           履歴に保存

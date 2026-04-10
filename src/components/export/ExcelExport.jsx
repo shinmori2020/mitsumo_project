@@ -2,6 +2,8 @@
 import XLSX from 'xlsx-js-style';
 import { formatCurrency } from '../../utils/formatCurrency';
 import { buildBreakdown } from '../../utils/buildBreakdown';
+import { getCompanyInfo } from '../../utils/companyInfo';
+import { getNextEstimateNumber } from '../../utils/estimateNumber';
 
 const SITE_TYPE_LABELS = { corporate: 'コーポレート', lp: 'LP', ec: 'EC', blog: 'ブログ' };
 const BUILD_METHOD_LABELS = { wordpress: 'WordPress', html: 'HTML/CSS' };
@@ -64,19 +66,31 @@ function setCell(ws, r, c, value, style) {
 }
 
 // Sheet1：見積もり明細
-function buildSheet1(estimate, price) {
+function buildSheet1(estimate, price, estNum) {
   const items = buildBreakdown(estimate);
+  const company = getCompanyInfo();
   const today = new Date();
   const expiry = new Date(today);
-  expiry.setDate(expiry.getDate() + 30);
-  const estNum = `EST-${today.getFullYear()}-${String(Math.floor(Math.random() * 9999) + 1).padStart(4, '0')}`;
+  expiry.setDate(expiry.getDate() + (estimate.validityDays || 30));
 
   const ws = {};
   let row = 0;
 
+  // 自社情報（右寄せ）
+  if (company.name) {
+    setCell(ws, row, 4, company.name, s.headerInfo);
+    row++;
+    if (company.address) { setCell(ws, row, 4, company.address, s.headerInfo); row++; }
+    if (company.tel) { setCell(ws, row, 4, `TEL: ${company.tel}`, s.headerInfo); row++; }
+    if (company.email) { setCell(ws, row, 4, company.email, s.headerInfo); row++; }
+    if (company.url) { setCell(ws, row, 4, company.url, s.headerInfo); row++; }
+    row++;
+  }
+
   // タイトル
+  const titleRow = row;
   setCell(ws, row, 0, 'お 見 積 書', s.title);
-  ws['!merges'] = [{ s: { r: 0, c: 0 }, e: { r: 0, c: 5 } }];
+  ws['!merges'] = [{ s: { r: titleRow, c: 0 }, e: { r: titleRow, c: 5 } }];
   row += 2;
 
   // ヘッダー情報
@@ -356,8 +370,9 @@ function buildSheet3(estimate) {
 // Excel出力実行
 export function exportExcel(estimate, price) {
   const wb = XLSX.utils.book_new();
+  const estNum = getNextEstimateNumber();
 
-  XLSX.utils.book_append_sheet(wb, buildSheet1(estimate, price), '見積もり明細');
+  XLSX.utils.book_append_sheet(wb, buildSheet1(estimate, price, estNum), '見積もり明細');
   XLSX.utils.book_append_sheet(wb, buildSheet2(estimate), 'サイト仕様');
   XLSX.utils.book_append_sheet(wb, buildSheet3(estimate), '備考・補足事項');
 

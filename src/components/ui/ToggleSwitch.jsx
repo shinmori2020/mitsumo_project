@@ -4,7 +4,7 @@ import styles from './ToggleSwitch.module.css';
 
 export default function ToggleSwitch({ label, description, checked, onChange, price }) {
   return (
-    <div className={styles.row}>
+    <div className={`${styles.row} ${checked ? styles.rowOn : ''}`}>
       <div className={styles.labelWrap}>
         <span className={styles.label}>{label}</span>
         {description && <span className={styles.description}>{description}</span>}
