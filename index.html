@@ -3,11 +3,20 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/mitsumo_project/favicon.svg" />
+    <link rel="manifest" href="/mitsumo_project/manifest.json" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#1D9E75" />
     <title>MitsuMO - コーディング見積もりシミュレーター</title>
   </head>
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/mitsumo_project/sw.js');
+        });
+      }
+    </script>
   </body>
 </html>

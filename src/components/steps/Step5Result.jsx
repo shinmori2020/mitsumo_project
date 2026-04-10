@@ -2,10 +2,7 @@
 import { useState } from 'react';
 import { formatCurrency } from '../../utils/formatCurrency';
 import { buildBreakdown } from '../../utils/buildBreakdown';
-import { exportExcel } from '../export/ExcelExport';
-import { exportPdf } from '../export/PdfExport';
-import { copyText } from '../export/TextCopy';
-import { sendMail } from '../export/MailSend';
+// 出力モジュールはdynamic importで必要時に読み込み（コード分割）
 import { encodeEstimateToUrl } from '../../hooks/useEstimate';
 import { saveToHistory } from '../../utils/estimateHistory';
 import CompareModal from './CompareModal';
@@ -164,27 +161,36 @@ export default function Step5Result({ estimate, price, onReset, onGoToStep }) {
 
       {/* 出力ボタン */}
       <div className={styles.exportGrid}>
-        <button className={styles.exportButton} onClick={() => exportExcel(estimate, price)}>
+        <button className={styles.exportButton} onClick={async () => {
+          const { exportExcel } = await import('../export/ExcelExport');
+          exportExcel(estimate, price);
+        }}>
           <span className={styles.exportIcon} style={{ backgroundColor: '#0F6E56' }}>XL</span>
           Excel出力
         </button>
         <button className={styles.exportButton} disabled={pdfLoading} onClick={async () => {
           setPdfLoading(true);
-          try { await exportPdf(estimate, price); }
-          catch (e) { alert('PDF生成中にエラーが発生しました'); }
+          try {
+            const { exportPdf } = await import('../export/PdfExport');
+            await exportPdf(estimate, price);
+          } catch (e) { alert('PDF生成中にエラーが発生しました'); }
           finally { setPdfLoading(false); }
         }}>
           <span className={styles.exportIcon} style={{ backgroundColor: '#C00000' }}>PDF</span>
           {pdfLoading ? 'PDF生成中...' : 'PDF出力'}
         </button>
         <button className={styles.exportButton} onClick={async () => {
+          const { copyText } = await import('../export/TextCopy');
           const ok = await copyText(estimate, price);
           if (ok) alert('クリップボードにコピーしました');
         }}>
           <span className={styles.exportIcon} style={{ backgroundColor: '#085041' }}>Cp</span>
           テキストコピー
         </button>
-        <button className={styles.exportButton} onClick={() => sendMail(estimate, price)}>
+        <button className={styles.exportButton} onClick={async () => {
+          const { sendMail } = await import('../export/MailSend');
+          sendMail(estimate, price);
+        }}>
           <span className={styles.exportIcon} style={{ backgroundColor: '#2B4C7E' }}>Mail</span>
           メール送信
         </button>
