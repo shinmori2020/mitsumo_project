@@ -279,6 +279,22 @@
 ### 28. レイアウト修正
 - Step5出力ボタンを2カラムグリッド → **横1列flex配置**に変更。各ボタンは`flex: 1`で横幅を均等に広げて使用。モバイルでは縦並び
 
+### 29. パフォーマンス・技術改善（2項目）
+1. **コード分割（Code Splitting）**: 出力モジュール（Excel/PDF/TextCopy/Mail）をdynamic import()に変更。メインバンドルが1,762KB → 264KBに85%削減。出力ボタン押下時に必要なモジュールだけ遅延読み込み
+2. **PWA対応**: `manifest.json`（アプリ名・アイコン・テーマ色定義）、`sw.js`（Service Worker、キャッシュファースト戦略）、`index.html`にmanifestリンク+SW登録を追加。オフライン動作可能、ホーム画面にアプリとして追加可能
+
+### 30. 実務の仕上げ（3項目）+ 使い勝手（1項目）
+3. **自社情報設定**: `src/utils/companyInfo.js`（LocalStorage管理）、`SettingsModal`コンポーネント新規作成。ヘッダーの⚙ボタンから設定モーダルを開き、会社名・住所・電話・メール・URLを入力・保存。PDF出力のヘッダーに自社情報を表示
+4. **見積番号の連番管理**: `src/utils/estimateNumber.js`新規作成。年ごとにリセットされる連番（EST-YYYY-NNNN）をLocalStorageで管理。PDF出力時に自動採番（ランダム生成を廃止）
+5. **有効期限のカスタマイズ**: useEstimateの初期状態にvalidityDays（デフォルト30日）を追加。Step4「見積もりヘッダー情報」に日数入力フィールド追加（1〜365日）。Step5の有効期限表示とPDF出力に反映
+6. **キーボードショートカット**: App.jsxにkeydownイベントリスナー追加。`←→`でステップ移動、`Ctrl+S`で履歴保存（Step5のみ）、`Ctrl+P`で印刷。テキスト入力中は無効
+
+### 31. リセットボタン
+- Step1のタイトル右側に「リセット」ボタンを追加
+- クリックで確認ダイアログ表示後、全入力データをクリア
+- ホバー時に赤く変化して破壊的操作であることを視覚的に示す
+- 初回実装時にボタンが見えにくかったため、背景・ボーダー・文字を濃く調整
+
 ---
 
 ## 現在のプロジェクト構造
@@ -301,7 +317,8 @@ src/
 │   │   ├── StepIndicator.jsx（+module.css）   # ステップインジケーター
 │   │   ├── PriceBar.jsx（+module.css）        # 下部金額バー
 │   │   ├── GroupCard.jsx（+module.css）       # グループラベル+ボックス
-│   │   └── Sidebar.jsx（+module.css）         # サイドバー（サマリー+金額）
+│   │   ├── Sidebar.jsx（+module.css）         # サイドバー（サマリー+金額）
+│   │   └── SettingsModal.jsx（+module.css）   # 自社情報設定モーダル
 │   └── export/
 │       ├── ExcelExport.jsx    # Excel出力（xlsx-js-style）
 │       ├── PdfExport.jsx      # PDF出力（html2canvas + jsPDF）
@@ -314,7 +331,9 @@ src/
 │   ├── calculatePrice.js      # 金額計算ロジック
 │   ├── formatCurrency.js      # 金額フォーマット
 │   ├── buildBreakdown.js      # 内訳テーブル用データ生成（カテゴリ付き）
-│   └── estimateHistory.js     # 見積もり履歴管理（LocalStorage）
+│   ├── estimateHistory.js     # 見積もり履歴管理（LocalStorage）
+│   ├── companyInfo.js         # 自社情報管理（LocalStorage）
+│   └── estimateNumber.js      # 見積番号連番管理（LocalStorage）
 ├── hooks/
 │   └── useEstimate.js         # 見積もり状態管理フック
 ├── App.jsx                    # メインアプリ（レイアウト・ルーティング）
@@ -399,6 +418,11 @@ src/
 | `bca65e2` | 内訳テーブル配色コントラスト改善 |
 | `7e86978` | 出力ボタンを横1列flexに変更 |
 | `4eaeaa0` | 出力ボタン横幅均等拡張 |
+| `d1efb15` | 作業ログ更新（セッション4） |
+| `d8575b5` | コード分割 + PWA対応 |
+| `7594c7d` | 自社情報設定 + 見積番号連番 + 有効期限カスタマイズ + ショートカット |
+| `85dacd4` | Step1にリセットボタン追加 |
+| `94cf5de` | リセットボタンの視認性改善 |
 
 ## 今後の改善候補
 
@@ -406,3 +430,4 @@ src/
 - ダークモード対応
 - 多言語対応（英語版）
 - テンプレートのカスタマイズ・追加機能
+- Excel出力にも自社情報・連番・有効期限を反映
