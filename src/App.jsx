@@ -116,6 +116,7 @@ function App() {
                 updateField={updateField}
                 onNext={handleNext}
                 onLoadEstimate={loadEstimate}
+                onReset={resetEstimate}
               />
             )}
             {currentStep === 2 && (

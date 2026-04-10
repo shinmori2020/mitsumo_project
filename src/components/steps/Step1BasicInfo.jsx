@@ -22,7 +22,7 @@ const BUILD_METHODS = [
   { value: 'wordpress', label: 'WordPress' },
 ];
 
-export default function Step1BasicInfo({ estimate, updateField, onNext, onLoadEstimate }) {
+export default function Step1BasicInfo({ estimate, updateField, onNext, onLoadEstimate, onReset }) {
   const [history, setHistory] = useState(getHistory);
   const [showHistory, setShowHistory] = useState(false);
 
@@ -39,8 +39,15 @@ export default function Step1BasicInfo({ estimate, updateField, onNext, onLoadEs
 
   return (
     <div className={styles.container}>
-      <h2 className={styles.sectionTitle}>サイトの基本情報</h2>
-      <p className={styles.sectionDesc}>サイトの種類や構成を選択してください</p>
+      <div className={styles.titleRow}>
+        <div>
+          <h2 className={styles.sectionTitle}>サイトの基本情報</h2>
+          <p className={styles.sectionDesc}>サイトの種類や構成を選択してください</p>
+        </div>
+        <button className={styles.resetButton} onClick={() => {
+          if (window.confirm('入力内容をすべてリセットしますか？')) onReset();
+        }}>リセット</button>
+      </div>
 
       {/* 履歴パネル */}
       {history.length > 0 && (

@@ -12,7 +12,33 @@
 .sectionDesc {
   font-size: 16px;
   color: #0F6E56;
-  margin-bottom: 32px;
+  margin-bottom: 0;
+}
+
+.titleRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 24px;
+}
+
+.resetButton {
+  padding: 8px 16px;
+  border-radius: 8px;
+  border: 0.5px solid #ddd;
+  background: #fff;
+  color: #999;
+  font-size: 13px;
+  font-family: inherit;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+}
+
+.resetButton:hover {
+  background: #fee;
+  color: #c00;
+  border-color: #fcc;
 }
 
 /* テンプレート */
