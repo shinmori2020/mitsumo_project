@@ -194,12 +194,34 @@
 }
 
 @media (max-width: 480px) {
+  .header {
+    padding: 10px 12px;
+  }
+
+  .topRow {
+    margin-bottom: 6px;
+  }
+
+  .title {
+    font-size: 15px;
+  }
+
+  .circle {
+    width: 26px;
+    height: 26px;
+    font-size: 11px;
+  }
+
   .line {
-    width: 16px;
+    width: 12px;
+    margin-bottom: 16px;
   }
 
   .stepLabel {
-    font-size: 10px;
+    font-size: 9px;
+    max-width: 48px;
+    text-align: center;
+    line-height: 1.2;
   }
 }
 

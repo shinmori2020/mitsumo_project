@@ -129,14 +129,20 @@ export default function Sidebar({ estimate, price, position }) {
         </ul>
       </div>
 
-      {/* Step2：機能選択（選択されたもののみ表示） */}
-      <Step2Summary estimate={estimate} />
+      {/* Step2〜4：モバイルでは折りたたみ */}
+      <details className={styles.detailsGroup}>
+        <summary className={styles.detailsSummary}>Step2〜4 の詳細を表示</summary>
+        <Step2Summary estimate={estimate} />
+        <Step3Summary estimate={estimate} />
+        <Step4Summary estimate={estimate} />
+      </details>
 
-      {/* Step3：デザイン仕様 */}
-      <Step3Summary estimate={estimate} />
-
-      {/* Step4：オプション（選択されたもののみ表示） */}
-      <Step4Summary estimate={estimate} />
+      {/* デスクトップではdetails外にも表示 */}
+      <div className={styles.desktopOnly}>
+        <Step2Summary estimate={estimate} />
+        <Step3Summary estimate={estimate} />
+        <Step4Summary estimate={estimate} />
+      </div>
     </aside>
   );
 }

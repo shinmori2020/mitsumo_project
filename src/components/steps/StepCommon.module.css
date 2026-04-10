@@ -181,6 +181,12 @@
   .nextButton {
     padding: 14px;
     font-size: 15px;
+    min-height: 48px;
+  }
+
+  .bulkButton {
+    min-height: 40px;
+    padding: 10px 16px;
   }
 }
 

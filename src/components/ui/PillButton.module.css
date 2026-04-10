@@ -34,7 +34,8 @@
 
 @media (max-width: 768px) {
   .pill {
-    padding: 10px 18px;
+    padding: 12px 20px;
     font-size: 14px;
+    min-height: 44px;
   }
 }
