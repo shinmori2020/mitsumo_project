@@ -21,7 +21,7 @@ export default function Step5Result({ estimate, price, onReset, onGoToStep }) {
   // 有効期限の算出
   const today = new Date();
   const expiryDate = new Date(today);
-  expiryDate.setDate(expiryDate.getDate() + 30);
+  expiryDate.setDate(expiryDate.getDate() + (estimate.validityDays || 30));
   const formatDate = (d) => `${d.getFullYear()}/${String(d.getMonth() + 1).padStart(2, '0')}/${String(d.getDate()).padStart(2, '0')}`;
 
   const handleReset = () => {

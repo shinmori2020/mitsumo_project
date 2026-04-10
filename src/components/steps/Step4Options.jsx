@@ -212,6 +212,19 @@ export default function Step4Options({ estimate, updateField, onNext, onBack }) 
             onChange={(e) => updateField('desiredDeadline', e.target.value)}
             aria-label="納期の希望"
           />
+          <div className={styles.inputLabel}>見積もり有効期限</div>
+          <div className={styles.discountInput}>
+            <input
+              type="number"
+              className={styles.numberInput}
+              min="1"
+              max="365"
+              value={estimate.validityDays}
+              onChange={(e) => updateField('validityDays', Math.max(1, Math.min(365, Number(e.target.value) || 30)))}
+              aria-label="有効期限日数"
+            />
+            <span className={styles.inputUnit}>日間</span>
+          </div>
         </div>
       </GroupCard>
 

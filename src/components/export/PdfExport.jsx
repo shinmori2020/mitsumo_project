@@ -3,6 +3,8 @@ import html2canvas from 'html2canvas';
 import { jsPDF } from 'jspdf';
 import { formatCurrency } from '../../utils/formatCurrency';
 import { buildBreakdown } from '../../utils/buildBreakdown';
+import { getCompanyInfo } from '../../utils/companyInfo';
+import { getNextEstimateNumber } from '../../utils/estimateNumber';
 
 const SITE_TYPE_LABELS = { corporate: 'コーポレート', lp: 'LP', ec: 'EC', blog: 'ブログ' };
 const BUILD_METHOD_LABELS = { wordpress: 'WordPress', html: 'HTML/CSS' };
@@ -70,12 +72,12 @@ function buildSummaryRows(estimate, price) {
 }
 
 // 明細ページ群を生成（1ページ目はヘッダー付き、2ページ目以降は明細の続き）
-function buildDetailPages(estimate, price) {
+function buildDetailPages(estimate, price, estNum, validityDays) {
   const items = buildBreakdown(estimate);
+  const company = getCompanyInfo();
   const today = new Date();
   const expiry = new Date(today);
-  expiry.setDate(expiry.getDate() + 30);
-  const estNum = `EST-${today.getFullYear()}-${String(Math.floor(Math.random() * 9999) + 1).padStart(4, '0')}`;
+  expiry.setDate(expiry.getDate() + (validityDays || 30));
 
   const pages = [];
   let currentIndex = 0;
@@ -84,7 +86,18 @@ function buildDetailPages(estimate, price) {
   const firstPageRows = items.slice(0, ROWS_FIRST_PAGE);
   const isLastPage = items.length <= ROWS_FIRST_PAGE;
 
+  const companyHtml = company.name ? `
+    <div style="text-align:right;font-size:11px;color:#555;margin-bottom:16px;line-height:1.8">
+      <div style="font-size:13px;font-weight:bold;color:#085041">${company.name}</div>
+      ${company.address ? `<div>${company.address}</div>` : ''}
+      ${company.tel ? `<div>TEL: ${company.tel}</div>` : ''}
+      ${company.email ? `<div>${company.email}</div>` : ''}
+      ${company.url ? `<div>${company.url}</div>` : ''}
+    </div>
+  ` : '';
+
   let firstPageHtml = `<div style="${pageStyle}">
+    ${companyHtml}
     <h1 style="text-align:center;font-size:24px;color:#085041;letter-spacing:8px;margin-bottom:24px">お 見 積 書</h1>
     <div style="display:flex;justify-content:space-between;margin-bottom:20px">
       <div><span style="font-size:16px;font-weight:bold;color:#085041">${estimate.clientName || '（お客様名未入力）'} 御中</span></div>
@@ -235,8 +248,11 @@ async function renderPage(html, pdf, isFirstPage) {
 export async function exportPdf(estimate, price) {
   const pdf = new jsPDF('p', 'mm', 'a4');
 
+  const estNum = getNextEstimateNumber();
+  const validityDays = estimate.validityDays || 30;
+
   // 明細ページ（自動分割）
-  const detailPages = buildDetailPages(estimate, price);
+  const detailPages = buildDetailPages(estimate, price, estNum, validityDays);
   for (let i = 0; i < detailPages.length; i++) {
     await renderPage(detailPages[i], pdf, i === 0);
   }

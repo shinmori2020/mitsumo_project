@@ -19,6 +19,26 @@
   font-weight: 500;
 }
 
+.headerRight {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.settingsBtn {
+  background: none;
+  border: none;
+  font-size: 18px;
+  color: #9FE1CB;
+  cursor: pointer;
+  padding: 4px;
+  transition: color 0.2s;
+}
+
+.settingsBtn:hover {
+  color: #FFFFFF;
+}
+
 .sidebarToggle {
   display: flex;
   align-items: center;

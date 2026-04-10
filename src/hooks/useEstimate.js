@@ -69,6 +69,7 @@ const initialEstimate = {
   paymentTiming: '',
   paymentMethod: '',
   otherNote: '',
+  validityDays: 30,
 };
 
 // URLパラメータから復元

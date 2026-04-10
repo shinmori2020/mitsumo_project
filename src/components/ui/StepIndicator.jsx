@@ -3,12 +3,14 @@ import styles from './StepIndicator.module.css';
 
 const STEP_LABELS = ['基本情報', '機能選択', 'デザイン', 'オプション', '結果'];
 
-export default function StepIndicator({ currentStep, sidebarPosition, onToggleSidebar, onStepClick }) {
+export default function StepIndicator({ currentStep, sidebarPosition, onToggleSidebar, onStepClick, onOpenSettings }) {
   return (
     <header className={styles.header}>
       <div className={styles.topRow}>
         <div className={styles.title}>MitsuMO</div>
-        <div className={styles.sidebarToggle}>
+        <div className={styles.headerRight}>
+          <button className={styles.settingsBtn} onClick={onOpenSettings} aria-label="設定">⚙</button>
+          <div className={styles.sidebarToggle}>
           <span className={styles.toggleLabel}>サイドバー</span>
           <button
             type="button"
@@ -19,6 +21,7 @@ export default function StepIndicator({ currentStep, sidebarPosition, onToggleSi
             <span className={`${styles.toggleOption} ${sidebarPosition === 'left' ? styles.toggleActive : ''}`}>左</span>
             <span className={`${styles.toggleOption} ${sidebarPosition === 'right' ? styles.toggleActive : ''}`}>右</span>
           </button>
+          </div>
         </div>
       </div>
       <div className={styles.steps}>
