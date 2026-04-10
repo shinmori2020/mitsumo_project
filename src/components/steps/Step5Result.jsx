@@ -7,6 +7,7 @@ import { toast } from '../ui/Toast';
 import { encodeEstimateToUrl } from '../../hooks/useEstimate';
 import { saveToHistory } from '../../utils/estimateHistory';
 import CompareModal from './CompareModal';
+import { ExcelIcon, PdfIcon, CopyIcon, MailIcon, LinkIcon, SaveIcon, CompareIcon } from '../ui/ExportIcons';
 import styles from './Step5Result.module.css';
 
 const DEADLINE_LABELS = { 1.0: '通常', 1.3: '急ぎ ×1.3', 1.5: '特急 ×1.5' };
@@ -166,7 +167,7 @@ export default function Step5Result({ estimate, price, onReset, onGoToStep }) {
           const { exportExcel } = await import('../export/ExcelExport');
           exportExcel(estimate, price);
         }}>
-          <span className={styles.exportIcon} style={{ backgroundColor: '#0F6E56' }}>XL</span>
+          <span className={styles.exportIcon} style={{ backgroundColor: '#0F6E56' }}><ExcelIcon /></span>
           Excel出力
         </button>
         <button className={styles.exportButton} disabled={pdfLoading} onClick={async () => {
@@ -177,7 +178,7 @@ export default function Step5Result({ estimate, price, onReset, onGoToStep }) {
           } catch (e) { alert('PDF生成中にエラーが発生しました'); }
           finally { setPdfLoading(false); }
         }}>
-          <span className={styles.exportIcon} style={{ backgroundColor: '#C00000' }}>PDF</span>
+          <span className={styles.exportIcon} style={{ backgroundColor: '#C00000' }}><PdfIcon /></span>
           {pdfLoading ? 'PDF生成中...' : 'PDF出力'}
         </button>
         <button className={styles.exportButton} onClick={async () => {
@@ -185,14 +186,14 @@ export default function Step5Result({ estimate, price, onReset, onGoToStep }) {
           const ok = await copyText(estimate, price);
           if (ok) toast('クリップボードにコピーしました');
         }}>
-          <span className={styles.exportIcon} style={{ backgroundColor: '#085041' }}>Cp</span>
+          <span className={styles.exportIcon} style={{ backgroundColor: '#085041' }}><CopyIcon /></span>
           テキストコピー
         </button>
         <button className={styles.exportButton} onClick={async () => {
           const { sendMail } = await import('../export/MailSend');
           sendMail(estimate, price);
         }}>
-          <span className={styles.exportIcon} style={{ backgroundColor: '#2B4C7E' }}>Mail</span>
+          <span className={styles.exportIcon} style={{ backgroundColor: '#2B4C7E' }}><MailIcon /></span>
           メール送信
         </button>
         <button className={styles.exportButton} onClick={async () => {
@@ -204,18 +205,18 @@ export default function Step5Result({ estimate, price, onReset, onGoToStep }) {
             prompt('以下のURLをコピーしてください:', url);
           }
         }}>
-          <span className={styles.exportIcon} style={{ backgroundColor: '#1D9E75' }}>URL</span>
+          <span className={styles.exportIcon} style={{ backgroundColor: '#1D9E75' }}><LinkIcon /></span>
           URLを共有
         </button>
         <button className={styles.exportButton} onClick={() => {
           saveToHistory(estimate, price);
           toast('見積もりを履歴に保存しました');
         }}>
-          <span className={styles.exportIcon} style={{ backgroundColor: '#5DCAA5' }}>保存</span>
+          <span className={styles.exportIcon} style={{ backgroundColor: '#5DCAA5' }}><SaveIcon /></span>
           履歴に保存
         </button>
         <button className={styles.exportButton} onClick={() => setShowCompare(true)}>
-          <span className={styles.exportIcon} style={{ backgroundColor: '#085041' }}>比較</span>
+          <span className={styles.exportIcon} style={{ backgroundColor: '#085041' }}><CompareIcon /></span>
           見積もり比較
         </button>
       </div>

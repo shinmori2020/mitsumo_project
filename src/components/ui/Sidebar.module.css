@@ -2,15 +2,14 @@
   width: 500px;
   min-width: 500px;
   background-color: #F8FBF9;
-  border-right: 0.5px solid #ddd;
+  box-shadow: 1px 0 0 0 #e0e0e0;
   height: 100%;
   min-height: 100vh;
   padding-top: 20px;
 }
 
 .sidebarRight {
-  border-right: none;
-  border-left: 0.5px solid #ddd;
+  box-shadow: -1px 0 0 0 #e0e0e0;
 }
 
 .priceCard {
