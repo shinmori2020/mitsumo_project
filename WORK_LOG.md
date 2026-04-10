@@ -300,6 +300,47 @@
 2. **トースト通知**: `Toast`コンポーネント新規作成。画面右下にダークグリーンの通知がスライドインし3秒で自動消去。`alert()`を全てtoast()に置換（テキストコピー/URL共有/履歴保存/自社情報保存）。CSSアニメーション付き（slideIn + fadeOut）
 3. **トグルON時の行ハイライト**: ToggleSwitchのrow要素にON時に`rowOn`クラスを追加。薄いグリーン背景（rgba(29,158,117,0.04)）がtransition 0.3sでスムーズに変化
 
+### 33. 作業ログのスキル化
+- `skills/work-log/SKILL.md` を作成。WORK_LOG.mdの記載ルール（構造・セッション分け・通し番号・本文の書き方パターン・記載レベル・更新タイミング等）を定義
+- 他プロジェクトでも同じフォーマットで作業ログを再現可能に
+
+---
+
+## 2026-04-10 セッション5
+
+### 34. コード品質改善（2項目）
+1. **Step共通CSS統合**: `StepCommon.module.css` に共通スタイル（container/buttons/inputs/pillGroup等）を集約。Step1〜4のCSSから重複を削除（約490行削減、CSS総量34KB→30KB）。各StepのJSXで `common.xxx` として参照
+2. **PDFテンプレート構造化**: `pdfTemplates.js` にHTMLヘルパー関数を分離（page/heading/table/infoRow/colorRow/companyHeader/headerInfo等）。PdfExport.jsxはヘルパーを組み合わせるだけのシンプルな構造に
+
+### 35. UI/デザイン改善（3項目）
+1. **Step3カラーピッカー改善**: カードにホバーで浮き上がり+影、プレビュー高さ拡大（48→56px）、カラーコードをmonospace表示、ボーダーを1pxに統一
+2. **出力ボタンSVGアイコン化**: テキストアイコン（XL/PDF/Cp/Mail/URL/保存/比較）をSVGアイコンに置換。`ExportIcons.jsx` に7つのSVGコンポーネントを定義。アイコンサイズ32x32px、padding 6px
+3. **サイドバー境界修正**: `border-right: 0.5px` → `box-shadow: 1px 0 0 0` に変更。transformアニメーション中のサブピクセルレンダリングによるずれを解消
+
+### 36. Service Worker修正
+- デプロイ後に古いキャッシュが返されて画面が真っ白になる問題を修正
+- キャッシュ戦略を**キャッシュ優先→ネットワーク優先**に変更（オンライン時は常に最新ファイルを取得、オフライン時のみキャッシュから返す）
+- デプロイのたびにキャッシュバージョンを更新する運用に
+
+### 37. レスポンシブ改善（3項目）
+1. **タッチ最適化**: モバイルでトグルスイッチを拡大（52x30px）、ピルボタン最小高さ44px、ナビボタン最小高さ48px、一括ボタン最小高さ40px
+2. **モバイルサイドバー簡素化**: Step2〜4のサマリーを`<details>`要素で折りたたみ。金額カード+Step1のみデフォルト表示、タップで展開。デスクトップでは従来通り全表示
+3. **480px以下ステップインジケーター最適化**: 丸を26px、ラインを12px、ラベルにmax-width+折り返し対応。ヘッダーpaddingも縮小
+
+### 38. ハンバーガーボタン修正
+- 設定（⚙）ボタンとの重なり解消: モバイル（1024px以下）で⚙ボタンを非表示に
+- ハンバーガーの視認性改善: ダーク半透明背景（`rgba(8,80,65,0.85)`）+ `backdrop-filter: blur(4px)` を追加。タップ領域44x44pxに拡大、角丸8px
+- 線の位置を新しいpadding内に調整
+
+### 39. スワイプでステップ移動
+- モバイルで左スワイプ→次のステップ、右スワイプ→前のステップ
+- 横方向の移動が50px以上かつ縦方向より大きい場合のみ発動（スクロール・スライダー操作と干渉しない）
+- touchStart/touchEndイベントで実装、フェードトランジション付き
+
+### 40. Excel/PDFのコード品質改善
+1. **ExcelExport構造化**: `excelHelpers.js` に14個のヘルパー関数を分離（setCell/addSection/addInfoRow/addTableHeader/addCategoryRow/addDetailRow/addSummaryRow/finalizeSheet等）。ExcelExport.jsxはヘルパーを呼ぶだけの構造に
+2. **カテゴリフィールドの活用**: buildBreakdownのcategoryフィールドをExcel（Sheet1にカテゴリヘッダー行）とPDF（detailRowsWithCategories関数）の両方で使用。Step5画面・Excel・PDFの3箇所でカテゴリ表示が統一
+
 ---
 
 ## 現在のプロジェクト構造
@@ -314,6 +355,7 @@ src/
 │   │   ├── Step4Options.jsx（+module.css）    # その他オプション
 │   │   ├── Step5Result.jsx（+module.css）     # 見積もり結果
 │   │   ├── CompareModal.jsx（+module.css）    # 見積もり比較モーダル
+│   │   ├── StepCommon.module.css              # Step共通スタイル
 │   ├── ui/
 │   │   ├── PillButton.jsx（+module.css）      # ピル型選択ボタン
 │   │   ├── ToggleSwitch.jsx（+module.css）    # トグルスイッチ
@@ -324,10 +366,13 @@ src/
 │   │   ├── GroupCard.jsx（+module.css）       # グループラベル+ボックス
 │   │   ├── Sidebar.jsx（+module.css）         # サイドバー（サマリー+金額）
 │   │   ├── SettingsModal.jsx（+module.css）   # 自社情報設定モーダル
-│   │   └── Toast.jsx（+module.css）           # トースト通知
+│   │   ├── Toast.jsx（+module.css）           # トースト通知
+│   │   └── ExportIcons.jsx                    # 出力ボタン用SVGアイコン
 │   └── export/
-│       ├── ExcelExport.jsx    # Excel出力（xlsx-js-style）
-│       ├── PdfExport.jsx      # PDF出力（html2canvas + jsPDF）
+│       ├── ExcelExport.jsx    # Excel出力（構造化）
+│       ├── excelHelpers.js    # Excelヘルパー関数（スタイル・セル操作）
+│       ├── PdfExport.jsx      # PDF出力（ページ別キャプチャ）
+│       ├── pdfTemplates.js    # PDFヘルパー関数（HTML生成）
 │       ├── TextCopy.jsx       # テキストコピー（Clipboard API）
 │       └── MailSend.jsx       # メール送信（mailto:）
 ├── data/
@@ -431,6 +476,15 @@ src/
 | `94cf5de` | リセットボタンの視認性改善 |
 | `95901d0` | 作業ログ更新（セッション4続き） |
 | `03e8d6d` | Excel自社情報対応 + トースト通知 + トグルONハイライト |
+| `907cd3c` | 作業ログ更新 |
+| `c9d5c5e` | 作業ログスキル（skills/work-log/SKILL.md）作成 |
+| `ad3a42f` | Step共通CSS統合 + PDFテンプレート構造化 |
+| `d07443e` | カラーピッカー改善 + SVGアイコン + サイドバー境界修正 |
+| `3d1882a` | SW修正（ネットワーク優先に変更） |
+| `293e706` | レスポンシブ改善（タッチ/サイドバー/インジケーター） |
+| `7dd4bef` | ハンバーガー重なり・視認性修正 |
+| `4724e06` | スワイプでステップ移動 |
+| `7b6b6f4` | Excelヘルパー分離 + カテゴリヘッダーをPDF/Excelに追加 |
 
 ## 今後の改善候補
 
@@ -440,3 +494,4 @@ src/
 - テンプレートのカスタマイズ・追加機能
 - 自社情報にロゴ画像アップロード
 - 単価データの編集機能（管理画面から単価を変更可能に）
+- モバイルで設定画面にアクセスする手段（現在⚙を非表示にしたため）
