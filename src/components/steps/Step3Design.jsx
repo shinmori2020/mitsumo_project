@@ -3,6 +3,7 @@ import { useRef } from 'react';
 import PillButton from '../ui/PillButton';
 import GroupCard from '../ui/GroupCard';
 import styles from './Step3Design.module.css';
+import common from './StepCommon.module.css';
 
 const FONT_STYLES = [
   { value: 'soft', label: 'やわらかい' },
@@ -104,9 +105,9 @@ function LayoutPreviewSvg({ pattern }) {
 
 export default function Step3Design({ estimate, updateField, onNext, onBack }) {
   return (
-    <div className={styles.container}>
-      <h2 className={styles.sectionTitle}>デザイン仕様</h2>
-      <p className={styles.sectionDesc}>デザインの方向性を選択してください（金額には影響しません）</p>
+    <div className={common.container}>
+      <h2 className={common.sectionTitle}>デザイン仕様</h2>
+      <p className={common.sectionDesc}>デザインの方向性を選択してください（金額には影響しません）</p>
 
       {/* 配色テーマ */}
       <GroupCard label="配色テーマ">
@@ -134,7 +135,7 @@ export default function Step3Design({ estimate, updateField, onNext, onBack }) {
       {/* フォントの雰囲気 */}
       <GroupCard label="フォントの雰囲気">
         <div style={{ padding: '16px 20px' }}>
-          <div className={styles.pillGroup}>
+          <div className={common.pillGroup}>
             {FONT_STYLES.map((font) => (
               <PillButton
                 key={font.value}
@@ -168,7 +169,7 @@ export default function Step3Design({ estimate, updateField, onNext, onBack }) {
         <div style={{ padding: '16px 20px' }}>
           <input
             type="url"
-            className={styles.textInput}
+            className={common.textInput}
             placeholder="https://example.com"
             value={estimate.referenceUrl1}
             onChange={(e) => updateField('referenceUrl1', e.target.value)}
@@ -176,7 +177,7 @@ export default function Step3Design({ estimate, updateField, onNext, onBack }) {
           />
           <input
             type="url"
-            className={styles.textInput}
+            className={common.textInput}
             placeholder="2つ目の参考サイト（任意）"
             value={estimate.referenceUrl2}
             onChange={(e) => updateField('referenceUrl2', e.target.value)}
@@ -189,7 +190,7 @@ export default function Step3Design({ estimate, updateField, onNext, onBack }) {
       <GroupCard label="その他の要望">
         <div style={{ padding: '16px 20px' }}>
           <textarea
-            className={styles.textArea}
+            className={common.textArea}
             placeholder="デザインに関する補足やイメージがあれば自由にご記入ください"
             value={estimate.designNote}
             onChange={(e) => updateField('designNote', e.target.value)}
@@ -199,11 +200,11 @@ export default function Step3Design({ estimate, updateField, onNext, onBack }) {
       </GroupCard>
 
       {/* ナビゲーションボタン */}
-      <div className={styles.buttons}>
-        <button className={styles.backButton} onClick={onBack}>
+      <div className={common.buttons}>
+        <button className={common.backButton} onClick={onBack}>
           戻る
         </button>
-        <button className={styles.nextButton} onClick={onNext}>
+        <button className={common.nextButton} onClick={onNext}>
           次へ進む
         </button>
       </div>

@@ -3,6 +3,7 @@ import ToggleSwitch from '../ui/ToggleSwitch';
 import DropdownSelect from '../ui/DropdownSelect';
 import GroupCard from '../ui/GroupCard';
 import styles from './Step2Features.module.css';
+import common from './StepCommon.module.css';
 import { PRICING } from '../../data/pricing';
 
 const ANIM_OPTIONS = [
@@ -31,15 +32,15 @@ export default function Step2Features({ estimate, updateField, onNext, onBack })
   };
 
   return (
-    <div className={styles.container}>
-      <div className={styles.titleRow}>
+    <div className={common.container}>
+      <div className={common.titleRow}>
         <div>
-          <h2 className={styles.sectionTitle}>機能選択</h2>
-          <p className={styles.sectionDesc}>サイトに必要な機能を選択してください</p>
+          <h2 className={common.sectionTitle}>機能選択</h2>
+          <p className={common.sectionDesc}>サイトに必要な機能を選択してください</p>
         </div>
-        <div className={styles.bulkButtons}>
-          <button className={styles.bulkButton} onClick={handleAllOn}>すべてON</button>
-          <button className={styles.bulkButton} onClick={handleAllOff}>すべてOFF</button>
+        <div className={common.bulkButtons}>
+          <button className={common.bulkButton} onClick={handleAllOn}>すべてON</button>
+          <button className={common.bulkButton} onClick={handleAllOff}>すべてOFF</button>
         </div>
       </div>
 
@@ -189,11 +190,11 @@ export default function Step2Features({ estimate, updateField, onNext, onBack })
       )}
 
       {/* ナビゲーションボタン */}
-      <div className={styles.buttons}>
-        <button className={styles.backButton} onClick={onBack}>
+      <div className={common.buttons}>
+        <button className={common.backButton} onClick={onBack}>
           戻る
         </button>
-        <button className={styles.nextButton} onClick={onNext}>
+        <button className={common.nextButton} onClick={onNext}>
           次へ進む
         </button>
       </div>

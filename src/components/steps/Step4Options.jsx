@@ -4,6 +4,7 @@ import DropdownSelect from '../ui/DropdownSelect';
 import PillButton from '../ui/PillButton';
 import GroupCard from '../ui/GroupCard';
 import styles from './Step4Options.module.css';
+import common from './StepCommon.module.css';
 import { PRICING } from '../../data/pricing';
 
 const SUPPORT_OPTIONS = [
@@ -34,15 +35,15 @@ export default function Step4Options({ estimate, updateField, onNext, onBack }) 
   const handleAllOff = () => STEP4_TOGGLE_FIELDS.forEach(f => updateField(f, false));
 
   return (
-    <div className={styles.container}>
-      <div className={styles.titleRow}>
+    <div className={common.container}>
+      <div className={common.titleRow}>
         <div>
-          <h2 className={styles.sectionTitle}>その他オプション</h2>
-          <p className={styles.sectionDesc}>最適化や納品、料金に関する設定を行います</p>
+          <h2 className={common.sectionTitle}>その他オプション</h2>
+          <p className={common.sectionDesc}>最適化や納品、料金に関する設定を行います</p>
         </div>
-        <div className={styles.bulkButtons}>
-          <button className={styles.bulkButton} onClick={handleAllOn}>すべてON</button>
-          <button className={styles.bulkButton} onClick={handleAllOff}>すべてOFF</button>
+        <div className={common.bulkButtons}>
+          <button className={common.bulkButton} onClick={handleAllOn}>すべてON</button>
+          <button className={common.bulkButton} onClick={handleAllOff}>すべてOFF</button>
         </div>
       </div>
 
@@ -139,8 +140,8 @@ export default function Step4Options({ estimate, updateField, onNext, onBack }) 
 
       {/* 割引 */}
       <GroupCard label="割引">
-        <div className={styles.inputGroup}>
-          <div className={styles.pillGroup}>
+        <div className={common.inputGroup}>
+          <div className={common.pillGroup}>
             {DISCOUNT_TYPES.map((type) => (
               <PillButton
                 key={type.value}
@@ -193,26 +194,26 @@ export default function Step4Options({ estimate, updateField, onNext, onBack }) 
 
       {/* 見積もりヘッダー情報 */}
       <GroupCard label="見積もりヘッダー情報">
-        <div className={styles.inputGroup}>
-          <div className={styles.inputLabel}>お客様名</div>
+        <div className={common.inputGroup}>
+          <div className={common.inputLabel}>お客様名</div>
           <input
             type="text"
-            className={styles.textInput}
+            className={common.textInput}
             placeholder="お客様名（例：サンプル株式会社）"
             value={estimate.clientName}
             onChange={(e) => updateField('clientName', e.target.value)}
             aria-label="お客様名"
           />
-          <div className={styles.inputLabel}>納期の希望</div>
+          <div className={common.inputLabel}>納期の希望</div>
           <input
             type="text"
-            className={styles.textInput}
+            className={common.textInput}
             placeholder="納期の希望（例：2026年6月末まで）"
             value={estimate.desiredDeadline}
             onChange={(e) => updateField('desiredDeadline', e.target.value)}
             aria-label="納期の希望"
           />
-          <div className={styles.inputLabel}>見積もり有効期限</div>
+          <div className={common.inputLabel}>見積もり有効期限</div>
           <div className={styles.discountInput}>
             <input
               type="number"
@@ -230,37 +231,37 @@ export default function Step4Options({ estimate, updateField, onNext, onBack }) 
 
       {/* 備考情報 */}
       <GroupCard label="備考">
-        <div className={styles.inputGroup}>
-          <div className={styles.inputLabel}>デザイン修正の無料回数</div>
+        <div className={common.inputGroup}>
+          <div className={common.inputLabel}>デザイン修正の無料回数</div>
           <input
             type="text"
-            className={styles.textInput}
+            className={common.textInput}
             placeholder="例：2回まで無料"
             value={estimate.freeRevisions}
             onChange={(e) => updateField('freeRevisions', e.target.value)}
             aria-label="デザイン修正の無料回数"
           />
-          <div className={styles.inputLabel}>支払いタイミング</div>
+          <div className={common.inputLabel}>支払いタイミング</div>
           <input
             type="text"
-            className={styles.textInput}
+            className={common.textInput}
             placeholder="例：着手時50% 納品時50%"
             value={estimate.paymentTiming}
             onChange={(e) => updateField('paymentTiming', e.target.value)}
             aria-label="支払いタイミング"
           />
-          <div className={styles.inputLabel}>支払い方法</div>
+          <div className={common.inputLabel}>支払い方法</div>
           <input
             type="text"
-            className={styles.textInput}
+            className={common.textInput}
             placeholder="例：銀行振込"
             value={estimate.paymentMethod}
             onChange={(e) => updateField('paymentMethod', e.target.value)}
             aria-label="支払い方法"
           />
-          <div className={styles.inputLabel}>その他備考</div>
+          <div className={common.inputLabel}>その他備考</div>
           <textarea
-            className={styles.textArea}
+            className={common.textArea}
             placeholder="その他クライアントへの補足事項"
             value={estimate.otherNote}
             onChange={(e) => updateField('otherNote', e.target.value)}
@@ -270,11 +271,11 @@ export default function Step4Options({ estimate, updateField, onNext, onBack }) 
       </GroupCard>
 
       {/* ナビゲーションボタン */}
-      <div className={styles.buttons}>
-        <button className={styles.backButton} onClick={onBack}>
+      <div className={common.buttons}>
+        <button className={common.backButton} onClick={onBack}>
           戻る
         </button>
-        <button className={styles.nextButton} onClick={() => {
+        <button className={common.nextButton} onClick={() => {
           if (!estimate.clientName.trim()) {
             if (!window.confirm('お客様名が未入力です。このまま結果を表示しますか？')) return;
           }

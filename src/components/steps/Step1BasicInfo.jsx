@@ -9,6 +9,7 @@ import { getHistory, deleteFromHistory } from '../../utils/estimateHistory';
 import { formatCurrency } from '../../utils/formatCurrency';
 import { TEMPLATES } from '../../data/templates';
 import styles from './Step1BasicInfo.module.css';
+import common from './StepCommon.module.css';
 
 const SITE_TYPES = [
   { value: 'corporate', label: 'コーポレート' },
@@ -38,11 +39,11 @@ export default function Step1BasicInfo({ estimate, updateField, onNext, onLoadEs
   };
 
   return (
-    <div className={styles.container}>
-      <div className={styles.titleRow}>
+    <div className={common.container}>
+      <div className={common.titleRow}>
         <div>
-          <h2 className={styles.sectionTitle}>サイトの基本情報</h2>
-          <p className={styles.sectionDesc}>サイトの種類や構成を選択してください</p>
+          <h2 className={common.sectionTitle}>サイトの基本情報</h2>
+          <p className={common.sectionDesc}>サイトの種類や構成を選択してください</p>
         </div>
         <button className={styles.resetButton} onClick={() => {
           if (window.confirm('入力内容をすべてリセットしますか？')) onReset();
@@ -101,7 +102,7 @@ export default function Step1BasicInfo({ estimate, updateField, onNext, onLoadEs
       {/* サイトの種類 */}
       <GroupCard label="サイトの種類">
         <div style={{ padding: '14px 16px' }}>
-          <div className={styles.pillGroup}>
+          <div className={common.pillGroup}>
             {SITE_TYPES.map((type) => (
               <PillButton
                 key={type.value}
@@ -117,7 +118,7 @@ export default function Step1BasicInfo({ estimate, updateField, onNext, onLoadEs
       {/* 制作方式 */}
       <GroupCard label="制作方式">
         <div style={{ padding: '14px 16px' }}>
-          <div className={styles.pillGroup}>
+          <div className={common.pillGroup}>
             {BUILD_METHODS.map((method) => (
               <PillButton
                 key={method.value}
@@ -200,11 +201,11 @@ export default function Step1BasicInfo({ estimate, updateField, onNext, onLoadEs
       </GroupCard>
 
       {/* ナビゲーションボタン */}
-      <div className={styles.buttons}>
-        <button className={styles.backButton} disabled>
+      <div className={common.buttons}>
+        <button className={common.backButtonDisabled} disabled>
           戻る
         </button>
-        <button className={styles.nextButton} onClick={onNext}>
+        <button className={common.nextButton} onClick={onNext}>
           次へ進む
         </button>
       </div>
