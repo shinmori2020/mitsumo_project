@@ -47,6 +47,21 @@ function App() {
     setSidebarPosition(prev => prev === 'left' ? 'right' : 'left');
   };
 
+  // スワイプでステップ移動（モバイル用）
+  const touchStart = useRef({ x: 0, y: 0 });
+  const handleTouchStart = useCallback((e) => {
+    touchStart.current = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+  }, []);
+  const handleTouchEnd = useCallback((e) => {
+    const dx = e.changedTouches[0].clientX - touchStart.current.x;
+    const dy = e.changedTouches[0].clientY - touchStart.current.y;
+    // 横方向が縦方向より大きく、50px以上スワイプした場合のみ
+    if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 50) {
+      if (dx < 0 && currentStep < 5) handleNext();
+      if (dx > 0 && currentStep > 1) handleBack();
+    }
+  }, [currentStep]);
+
   // キーボードショートカット
   const handleKeyDown = useCallback((e) => {
     // テキスト入力中は無効
@@ -110,7 +125,7 @@ function App() {
             onOpenSettings={() => setShowSettings(true)}
           />
 
-          <main ref={mainRef} className={`main-content ${fading ? 'main-fade-out' : 'main-fade-in'}`}>
+          <main ref={mainRef} className={`main-content ${fading ? 'main-fade-out' : 'main-fade-in'}`} onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>
             {currentStep === 1 && (
               <Step1BasicInfo
                 estimate={estimate}
