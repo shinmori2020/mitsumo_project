@@ -1,5 +1,5 @@
 // Service Worker - MitsuMO PWA
-const CACHE_NAME = 'mitsumo-v2';
+const CACHE_NAME = 'mitsumo-v3';
 
 // インストール時：キャッシュにアプリシェルを保存
 self.addEventListener('install', (event) => {
