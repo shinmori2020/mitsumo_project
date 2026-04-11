@@ -1,8 +1,7 @@
 // テキストコピー（クリップボードAPI）
 import { formatCurrency } from '../../utils/formatCurrency';
 import { buildBreakdown } from '../../utils/buildBreakdown';
-
-const DEADLINE_LABELS = { 1.0: '通常', 1.3: '急ぎ（×1.3）', 1.5: '特急（×1.5）' };
+import { DEADLINE_LABELS } from '../../data/labels';
 
 function buildText(estimate, price) {
   const items = buildBreakdown(estimate);

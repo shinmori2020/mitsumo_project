@@ -2,37 +2,8 @@
 import { useState, useEffect, useRef } from 'react';
 import { formatCurrency } from '../../utils/formatCurrency';
 import { PRICING } from '../../data/pricing';
+import { SITE_TYPE_LABELS, BUILD_METHOD_LABELS, ANIM_LABELS, SUPPORT_LABELS, DEADLINE_LABELS, FONT_LABELS, LAYOUT_LABELS } from '../../data/labels';
 import styles from './Sidebar.module.css';
-
-const SITE_TYPE_LABELS = {
-  corporate: 'コーポレート',
-  lp: 'LP',
-  ec: 'EC',
-  blog: 'ブログ',
-};
-
-const BUILD_METHOD_LABELS = {
-  wordpress: 'WordPress',
-  html: 'HTML・CSS',
-};
-
-const ANIM_LABELS = {
-  none: 'なし',
-  simple: 'シンプル',
-  rich: 'リッチ',
-};
-
-const SUPPORT_LABELS = {
-  none: 'なし',
-  light: 'ライト',
-  standard: 'スタンダード',
-};
-
-const DEADLINE_LABELS = {
-  1.0: '通常',
-  1.3: '急ぎ（×1.3）',
-  1.5: '特急（×1.5）',
-};
 
 export default function Sidebar({ estimate, price, position }) {
   const [pulse, setPulse] = useState(false);
@@ -220,20 +191,6 @@ function Step2Summary({ estimate }) {
   );
 }
 
-const FONT_STYLE_LABELS = {
-  soft: 'やわらかい',
-  sharp: 'シャープ',
-  formal: 'フォーマル',
-  casual: 'カジュアル',
-};
-
-const LAYOUT_LABELS = {
-  A: 'パターンA',
-  B: 'パターンB',
-  C: 'パターンC',
-  D: 'パターンD',
-};
-
 // Step3サマリー
 function Step3Summary({ estimate }) {
   return (
@@ -250,7 +207,7 @@ function Step3Summary({ estimate }) {
         </li>
         <li className={styles.item}>
           <span className={styles.itemLabel}>フォント</span>
-          <span className={styles.badge}>{FONT_STYLE_LABELS[estimate.fontStyle]}</span>
+          <span className={styles.badge}>{FONT_LABELS[estimate.fontStyle]}</span>
         </li>
         <li className={styles.item}>
           <span className={styles.itemLabel}>レイアウト</span>

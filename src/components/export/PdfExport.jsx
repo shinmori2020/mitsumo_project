@@ -6,10 +6,11 @@ import { getCompanyInfo } from '../../utils/companyInfo';
 import { getNextEstimateNumber } from '../../utils/estimateNumber';
 import { formatCurrency } from '../../utils/formatCurrency';
 import {
-  LABELS, page, heading1, heading2, heading3, priceBox,
+  page, heading1, heading2, heading3, priceBox,
   table, infoTable, tableHead, detailRowsWithCategories, summaryRows,
   companyHeader, headerInfo, infoRow, colorRow,
 } from './pdfTemplates';
+import { SITE_TYPE_LABELS, BUILD_METHOD_LABELS, FONT_LABELS, LAYOUT_LABELS, SUPPORT_LABELS_WITH_PRICE, DEADLINE_LABELS } from '../../data/labels';
 
 function fmtDate(d) {
   return `${d.getFullYear()}年${String(d.getMonth() + 1).padStart(2, '0')}月${String(d.getDate()).padStart(2, '0')}日`;
@@ -108,8 +109,8 @@ function buildPageSpec(estimate) {
     heading2('サイト仕様'),
     heading3('基本情報'),
     infoTable([
-      infoRow('サイト種別', LABELS.siteType[estimate.siteType]),
-      infoRow('制作方式', LABELS.buildMethod[estimate.buildMethod]),
+      infoRow('サイト種別', SITE_TYPE_LABELS[estimate.siteType]),
+      infoRow('制作方式', BUILD_METHOD_LABELS[estimate.buildMethod]),
       infoRow('ページ数', `トップ${topCount}P + 下層${estimate.subPageCount}P + LP${estimate.lpPageCount}P（計${totalPages}P）`),
       infoRow('レスポンシブ', estimate.responsive ? '対応する' : 'しない'),
     ].join('')),
@@ -118,8 +119,8 @@ function buildPageSpec(estimate) {
       colorRow('メインカラー', estimate.colorMain),
       colorRow('サブカラー', estimate.colorSub),
       colorRow('アクセント', estimate.colorAccent),
-      infoRow('フォント', LABELS.font[estimate.fontStyle]),
-      infoRow('レイアウト', LABELS.layout[estimate.layoutPattern]),
+      infoRow('フォント', FONT_LABELS[estimate.fontStyle]),
+      infoRow('レイアウト', LAYOUT_LABELS[estimate.layoutPattern]),
     ].join('')),
     heading3('選択機能'),
     `<p style="font-size:12px;margin-bottom:20px">${active.length > 0 ? active.join(' / ') : 'なし'}</p>`,
@@ -139,7 +140,7 @@ function buildPageNotes(estimate) {
       infoRow('追加費用について', '仕様変更・ページ追加が発生した場合は別途お見積り'),
       infoRow('素材について', '写真・テキスト等の素材はお客様にご用意いただきます'),
       infoRow('著作権', '制作物の著作権は納品・全額入金後にお客様へ譲渡'),
-      infoRow('保守プラン', LABELS.support[estimate.supportPlan]),
+      infoRow('保守プラン', SUPPORT_LABELS_WITH_PRICE[estimate.supportPlan]),
       infoRow('支払いタイミング', estimate.paymentTiming || '未設定'),
       infoRow('支払い方法', estimate.paymentMethod || '未設定'),
     ].join('')),

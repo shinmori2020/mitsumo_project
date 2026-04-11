@@ -8,16 +8,7 @@ import {
   S, setCell, addSection, addInfoRow, addInfoRows, addTableHeader,
   addCategoryRow, addDetailRow, addSummaryRow, finalizeSheet,
 } from './excelHelpers';
-
-const LABELS = {
-  siteType: { corporate: 'コーポレート', lp: 'LP', ec: 'EC', blog: 'ブログ' },
-  buildMethod: { wordpress: 'WordPress', html: 'HTML/CSS' },
-  font: { soft: 'やわらかい', sharp: 'シャープ', formal: 'フォーマル', casual: 'カジュアル' },
-  layout: { A: 'パターンA（ヘッダー大）', B: 'パターンB（サイドバー付）', C: 'パターンC（1カラム）', D: 'パターンD（グリッド）' },
-  support: { none: 'なし', light: 'ライト', standard: 'スタンダード' },
-  supportPrice: { none: 0, light: 5000, standard: 15000 },
-  deadline: { 1.0: '通常', 1.3: '急ぎ（×1.3）', 1.5: '特急（×1.5）' },
-};
+import { SITE_TYPE_LABELS, BUILD_METHOD_LABELS, FONT_LABELS, LAYOUT_LABELS_DETAIL, SUPPORT_LABELS, SUPPORT_PRICES, DEADLINE_LABELS } from '../../data/labels';
 
 function fmtDate(d) {
   return `${d.getFullYear()}年${String(d.getMonth() + 1).padStart(2, '0')}月${String(d.getDate()).padStart(2, '0')}日`;
@@ -88,7 +79,7 @@ function buildSheet1(estimate, price, estNum) {
   // 集計行
   row = addSummaryRow(ws, row, '小計（税抜）', price.subtotal, merges);
   if (price.deadlineAdjustment > 0) {
-    row = addSummaryRow(ws, row, `納期調整（${LABELS.deadline[estimate.deadlineRate]}）`, price.deadlineAdjustment, merges);
+    row = addSummaryRow(ws, row, `納期調整（${DEADLINE_LABELS[estimate.deadlineRate]}）`, price.deadlineAdjustment, merges);
   }
   if (price.discount > 0) {
     const dLabel = estimate.discountType === 'amount' ? '値引き' : `${estimate.discountValue}%割引`;
@@ -120,8 +111,8 @@ function buildSheet2(estimate) {
 
   row = addSection(ws, row, '基本情報', merges);
   row = addInfoRows(ws, row, [
-    ['サイト種別', LABELS.siteType[estimate.siteType]],
-    ['制作方式', LABELS.buildMethod[estimate.buildMethod]],
+    ['サイト種別', SITE_TYPE_LABELS[estimate.siteType]],
+    ['制作方式', BUILD_METHOD_LABELS[estimate.buildMethod]],
     ['制作ページ数', `トップ${topCount}P + 下層${estimate.subPageCount}P + LP${estimate.lpPageCount}P（計${totalPages}P）`],
     ['レスポンシブ対応', estimate.responsive ? '対応する' : 'しない'],
   ]);
@@ -132,8 +123,8 @@ function buildSheet2(estimate) {
     ['メインカラー', estimate.colorMain],
     ['サブカラー', estimate.colorSub],
     ['アクセントカラー', estimate.colorAccent],
-    ['フォントの雰囲気', LABELS.font[estimate.fontStyle]],
-    ['レイアウト', LABELS.layout[estimate.layoutPattern]],
+    ['フォントの雰囲気', FONT_LABELS[estimate.fontStyle]],
+    ['レイアウト', LAYOUT_LABELS_DETAIL[estimate.layoutPattern]],
   ]);
   row++;
 
@@ -183,9 +174,9 @@ function buildSheet3(estimate) {
   row++;
 
   row = addSection(ws, row, '保守・運用サポート', merges);
-  row = addInfoRow(ws, row, '選択プラン', LABELS.support[estimate.supportPlan]);
+  row = addInfoRow(ws, row, '選択プラン', SUPPORT_LABELS[estimate.supportPlan]);
   if (estimate.supportPlan !== 'none') {
-    row = addInfoRow(ws, row, '月額料金', `${formatCurrency(LABELS.supportPrice[estimate.supportPlan])}円/月`);
+    row = addInfoRow(ws, row, '月額料金', `${formatCurrency(SUPPORT_PRICES[estimate.supportPlan])}円/月`);
   }
   row++;
 

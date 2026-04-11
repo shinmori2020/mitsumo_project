@@ -1,15 +1,6 @@
 // PDF出力用HTMLテンプレート（構造化）
 import { formatCurrency } from '../../utils/formatCurrency';
-
-// 共通ラベル
-export const LABELS = {
-  siteType: { corporate: 'コーポレート', lp: 'LP', ec: 'EC', blog: 'ブログ' },
-  buildMethod: { wordpress: 'WordPress', html: 'HTML/CSS' },
-  font: { soft: 'やわらかい', sharp: 'シャープ', formal: 'フォーマル', casual: 'カジュアル' },
-  layout: { A: 'パターンA', B: 'パターンB', C: 'パターンC', D: 'パターンD' },
-  support: { none: 'なし', light: 'ライト（5,000円/月）', standard: 'スタンダード（15,000円/月）' },
-  deadline: { 1.0: '通常', 1.3: '急ぎ（×1.3）', 1.5: '特急（×1.5）' },
-};
+import { SITE_TYPE_LABELS, BUILD_METHOD_LABELS, FONT_LABELS, LAYOUT_LABELS, SUPPORT_LABELS_WITH_PRICE, DEADLINE_LABELS } from '../../data/labels';
 
 // 共通スタイル
 const S = {
@@ -75,7 +66,7 @@ export function summaryRows(estimate, price) {
   const rows = [];
   rows.push(summaryLine('小計（税抜）', `¥${formatCurrency(price.subtotal)}`, true));
   if (price.deadlineAdjustment > 0) {
-    rows.push(summaryLine(`納期調整（${LABELS.deadline[estimate.deadlineRate]}）`, `+¥${formatCurrency(price.deadlineAdjustment)}`));
+    rows.push(summaryLine(`納期調整（${DEADLINE_LABELS[estimate.deadlineRate]}）`, `+¥${formatCurrency(price.deadlineAdjustment)}`));
   }
   if (price.discount > 0) {
     const label = estimate.discountType === 'amount' ? '値引き' : `${estimate.discountValue}%割引`;

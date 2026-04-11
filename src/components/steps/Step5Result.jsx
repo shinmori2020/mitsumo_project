@@ -8,11 +8,8 @@ import { encodeEstimateToUrl } from '../../hooks/useEstimate';
 import { saveToHistory } from '../../utils/estimateHistory';
 import CompareModal from './CompareModal';
 import { ExcelIcon, PdfIcon, CopyIcon, MailIcon, LinkIcon, SaveIcon, CompareIcon } from '../ui/ExportIcons';
+import { DEADLINE_LABELS, SUPPORT_LABELS_WITH_PRICE as SUPPORT_LABELS, SUPPORT_PRICES } from '../../data/labels';
 import styles from './Step5Result.module.css';
-
-const DEADLINE_LABELS = { 1.0: '通常', 1.3: '急ぎ ×1.3', 1.5: '特急 ×1.5' };
-const SUPPORT_LABELS = { none: 'なし', light: 'ライト（5,000円/月）', standard: 'スタンダード（15,000円/月）' };
-const SUPPORT_PRICES = { light: 5000, standard: 15000 };
 
 export default function Step5Result({ estimate, price, onReset, onGoToStep }) {
   const [showBreakdown, setShowBreakdown] = useState(true);
