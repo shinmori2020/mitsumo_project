@@ -14,9 +14,11 @@
 }
 
 .title {
-  font-size: 18px;
-  color: #E1F5EE;
-  font-weight: 500;
+  font-family: 'Fredoka', sans-serif;
+  font-size: 22px;
+  color: #FFFFFF;
+  font-weight: 600;
+  letter-spacing: 1px;
 }
 
 .headerRight {
