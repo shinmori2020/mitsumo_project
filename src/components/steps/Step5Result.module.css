@@ -352,6 +352,10 @@
   .totalAmount {
     font-size: 28px;
   }
+
+  .exportGrid {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* 印刷用 */
