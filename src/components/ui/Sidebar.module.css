@@ -206,12 +206,14 @@
   /* モバイル：detailsを表示、desktopOnlyを非表示 */
   .detailsGroup {
     display: block;
-    padding: 0 20px;
+    padding: 0;
     margin-bottom: 16px;
   }
 
   .detailsSummary {
     font-size: 14px;
+    padding: 12px 20px;
+    margin: 0 20px;
     font-weight: 500;
     color: #1D9E75;
     cursor: pointer;
