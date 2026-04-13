@@ -1,15 +1,16 @@
 // Service Worker - MitsuMO PWA
-const CACHE_NAME = 'mitsumo-v11';
+const CACHE_NAME = 'mitsumo-v12';
+const BASE = self.location.pathname.replace(/sw\.js$/, '');
 
 // インストール時：キャッシュにアプリシェルを保存
 self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
       return cache.addAll([
-        '/mitsumo_project/',
-        '/mitsumo_project/index.html',
-        '/mitsumo_project/favicon.svg',
-        '/mitsumo_project/manifest.json',
+        BASE,
+        BASE + 'index.html',
+        BASE + 'favicon.svg',
+        BASE + 'manifest.json',
       ]);
     })
   );
@@ -32,7 +33,6 @@ self.addEventListener('activate', (event) => {
 self.addEventListener('fetch', (event) => {
   event.respondWith(
     fetch(event.request).then((response) => {
-      // 正常なレスポンスをキャッシュに更新
       if (response.ok && event.request.method === 'GET') {
         const clone = response.clone();
         caches.open(CACHE_NAME).then((cache) => {
@@ -41,11 +41,10 @@ self.addEventListener('fetch', (event) => {
       }
       return response;
     }).catch(() => {
-      // オフライン時：キャッシュから返す
       return caches.match(event.request).then((cached) => {
         if (cached) return cached;
         if (event.request.destination === 'document') {
-          return caches.match('/mitsumo_project/index.html');
+          return caches.match(BASE + 'index.html');
         }
       });
     })
